@@ -1,0 +1,69 @@
+
+
+<div>
+  <!-- <label>Event title:
+    <input #eventName />
+  </label> -->
+  <!-- (click) passes input value to add() and then clears the input -->
+  <!-- <button (click)="add(eventName.value); eventName.value=''">
+    add
+  </button> -->
+  <!-- <img src="../assets/images/logo_circle.png" /> -->
+</div>
+<h2></h2>
+  <h4 style="text-align: center;">Tabela de Kollegen</h4>
+  
+
+<div class="card">  
+  <div class="card-body pb-0">
+    <a routerLink="/kollege-form-modal">
+      <span>{{new_kollege}}</span>
+    </a>
+    <button (click)="createKollege()" mat-flat-button color="primary">Novo Médico</button>
+    <div class="row">
+      <div class="col-12 col-md-12">
+        <div class="card">  
+          <div class="card-body position-relative">  
+            <div class="table-responsive cnstr-record product-tbl">
+              <table class="table table-bordered heading-hvr">  
+                <thead>  
+                  <tr align="center">  
+                    <th></th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th width="50">Name</th>  
+                    <th>CRM</th>  
+                    <th>e-Mail</th>  
+                  </tr>  
+                </thead> 
+                <tbody *ngFor="let item of kollegen; let i = index">
+                  <tr>
+                    <td align="center">
+                       <!-- <a class="expand-row" *ngIf="!hideme[i]" (click)="showEventInfo(i,item.id)">   -->
+                      <!-- <a class="expand-row">  
+                        <img src="../assets/images/logo_circle.png" />
+                      </a>   -->
+                      <!-- <a class="expand-row" *ngIf="hideme[i]" (click)="hideme[i] = !hideme[i]">   -->
+                      <a class="expand-row">  
+                      </a>
+                    </td>
+                    <td align="center"><fa-icon [icon]="faEdit" [ngClass]="{'blue':5>4}" (click)="createKollege()"></fa-icon></td>
+                    <td align="center"><fa-icon [icon]="faTrash" [ngClass]="{'orange': 5 > 4}" (click)="delete(item)"></fa-icon></td>
+                    <td style="cursor: pointer" 
+                        (click)="eventClicked(item)">
+                          <a routerLink="/kollege-form/{{item.id}}">
+                              <span>{{item.name}} {{ item.id }}</span>
+                          </a>
+                    </td>
+                    <td>{{item.crm}}</td>
+                    <td>{{item.email}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

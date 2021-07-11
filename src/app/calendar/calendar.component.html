@@ -1,0 +1,61 @@
+
+<div class='demo-app'>
+  <!-- <div class='demo-app-sidebar'>
+    <div class='demo-app-sidebar-section'>
+      <h2>Instructions</h2>
+      <ul>
+        <li>Select dates and you will be prompted to create a new event</li>
+        <li>Drag, drop, and resize events</li>
+        <li>Click an event to delete it</li>
+      </ul>
+    </div>
+    <div class='demo-app-sidebar-section'>
+      <h2>Next Events ({{nextEvents.length}})</h2>
+      <ul>
+        <li *ngFor='let event of nextEvents'>
+          <b>{{event.start | date: "short"}}</b>
+          <i>{{event.title}}</i>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+
+  <div class='demo-app-main'>
+    <!-- <button (click)="toggleCalendar()">Cal</button>
+    <button (click)="createEvent()">Create Event</button> -->
+    <full-calendar
+      #calendar
+      *ngIf='calendarVisible'
+      [options]='calendarOptions'
+    ></full-calendar>
+  </div>
+<!--<app-event-form
+  (formCtrl)="getFormCtrl($event)"
+  [calSt] = "calSt"
+  [calTime] = "calTime"
+  [calTi] = "calTi"
+  [calResource] = "calResource">>
+</app-event-form>-->
+<div id="efm" class="demo-app-modal">
+<app-event-form-modal
+  [calSt] = "calSt"
+  [calTi] = "calTi"
+  [calTime] = "calTime"
+  [calResource] = "calResource"
+  [calTiTest] = "calTiTest">
+</app-event-form-modal>
+</div>
+
+<!-- Not necessary in app-event-form: [formSt]="calSt" [formTi]="calTi" -->
+
+</div>
+
+
+<!-- <button (click)="updateHeader()" id="updateHeader">Update header</button>
+<button (click)="updateEvents()" id="updateEvents">Update events</button>
+<full-calendar
+  *ngIf="calendarOptions"
+  #fullcalendar
+  [options]="calendarOptions"
+></full-calendar>
+<router-outlet></router-outlet> -->

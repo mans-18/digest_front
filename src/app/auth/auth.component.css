@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+.authCard {
+    max-width: 400px;
+    min-height: 300px;
+}
+
+.row {
+    padding-top: 40px;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+    border-style: double;
+    border-color: tomato;
+}
+
+.column.login {
+    width: 30%;
+}
+
+.column.intro {
+    width: 70%;
+}
+
+/* Turn the img a block to center it */
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.authCard.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other
+instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column.login, .column.column.intro {
+      width: 100%;
+    }
+}

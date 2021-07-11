@@ -1,0 +1,49 @@
+
+<a href="/dashboard" class="float" id="menu-share">
+    <i class="fa fa-plus my-float"></i>
+    </a>
+    <ul>
+      <li><a href="/calendar">
+        <i class="fa fa-calendar my-float"></i>
+      </a></li>
+      <li><a href="/traceboard">
+        <i class="fa fa-check my-float"></i>
+      </a></li>
+      <li><a href="/events">
+        <i class="fa fa-list my-float"></i>
+      </a></li>
+      <li><a href="/persona">
+        <i class="fa fa-users my-float"></i>
+      </a></li>
+      <li><a href="/kollege">
+        <i class="fa fa-user-md my-float"></i>
+      </a></li>
+      <li><a (click)="logout()">
+        <i class="fa fa-sign-out my-float"></i>
+      </a></li>
+    </ul>
+
+  <a href="/home"><img class="float_left" src="../assets/images/logo_circle.png"/></a>
+  
+  <div class="app">
+  
+      <h1 *ngIf="hid==true" class="float_center">
+        <div>Digest <span class="float_right" style="font-size: 0.7rem;">Olá, {{currentUser}}</span></div>
+      </h1>
+      <!-- <nav>
+        <a routerLink="/dashboard">Dashboard | </a>
+        <a routerLink="/events">Events | </a>
+        <a routerLink="/calendar">Calendar | </a>
+        <a routerLink="/persona">Personas | </a>
+        <a routerLink="/kollege">Kollegen | </a>
+      </nav> -->
+      <!-- <app-event-search></app-event-search> -->
+      <router-outlet></router-outlet>
+  </div>
+  <!-- <div>
+    <img class="fab" src="../assets/images/logo_circle.png" />
+  </div> -->
+  <div class="app">
+    <!-- <app-messages></app-messages> -->
+  </div>
+  

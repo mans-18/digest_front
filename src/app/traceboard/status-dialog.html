@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Qual o estado do atendimento?</h1>
+<div mat-dialog-content>
+    <!-- <ul *ngFor="let ev of todayEvents; let iev = index; trackBy: trackByFn"> -->
+    <ul *ngFor="let ev of todayEvents; let iev = index">
+        <span *ngFor="let per of personas">
+        <span *ngIf="ev.persona == per.id">   
+        <!-- Needs to change the iev value for each round -->
+        <!-- <span *ngIf="iev==2"> -->
+        <span style="color:blue">{{iev}}</span>
+        <li>
+            <a style="cursor: pointer" (click)="setStatusOutOnDB(ev)">Aguardando</a>
+        </li>
+        <li>
+            <a style="cursor: pointer" (click)="setStatusInOnDB(ev)">Em Atendimento</a>
+        </li>
+        <li>
+            <a style="cursor: pointer" (click)="setStatusOffOnDB(ev)">Cancelado</a>
+        </li>
+        </span>
+        <!-- </span> -->
+        </span>
+    </ul>
+</div>

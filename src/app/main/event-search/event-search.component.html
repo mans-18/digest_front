@@ -1,0 +1,18 @@
+<div id="search-component">
+    <p>depends on bootstrap</p>
+    <span><label style="padding-right: 10px;" for="search-box">Persona Search:</label></span>
+    <span><input #searchBox id="search-box" (input)="search(searchBox.value)" /></span>
+  
+    <ul id="search-result" class="search-result">
+    <!-- <ul> -->
+      <!-- <li *ngFor="let event of events$ | async" > -->
+      <li *ngFor="let persona of personas$ | async" >
+        <a routerLink="/persona-form-detail/{{persona.id}}">
+          <!-- <div (click)="goPersDetail()"> -->
+          {{persona.name}}:{{persona.dob}}
+          <!-- {{event.title}} -->
+        <!-- </div> -->
+        </a>
+      </li>
+    </ul>
+  </div>

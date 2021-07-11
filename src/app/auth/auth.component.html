@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="row">
+
+    <div class="column intro">
+        <mat-card class="authCard displayed">
+            <h2 style="text-align: center;">Bem vindo!</h2>
+            <p style="text-align: center;">85 3252-5469</p>
+            <img class="displayed" src="../assets/images/marFolheto.gif">
+        </mat-card>
+    </div>
+<!-- <mat-card-content> -->
+    <div class="column login">
+    <mat-card class="authCard">
+        <form [formGroup]="authForm" (ngSubmit)="saveForm()">
+        <label>Username</label><br>
+        <input type="text" formControlName="username"/><br>
+        <label>Password</label><br>
+        <input type="password" formControlName="password"/><br>
+        <button type="submit">
+            <span *ngIf="!registerMode">Login</span>
+            <span *ngIf="registerMode">Register</span>
+        </button>
+    </form>
+    <br>
+    <span *ngIf="!registerMode" (click)="registerMode = true">
+        Don't have an account? Register here.</span>
+    <span *ngIf="registerMode" (click)="registerMode = false">
+        This account already exists? Go to login.</span>
+    </mat-card>
+    </div>
+<!-- </mat-card-content> -->
+
+</div>
+
+<!-- [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) 
+<input _ngcontent-lxu-c54="" type="password" formcontrolname="password" ng-reflect-name="password" class="ng-untouched ng-pristine ng-valid"> -->

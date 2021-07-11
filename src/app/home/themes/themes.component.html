@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<style>
+</style>
+</head>
+<body>
+
+    <!-- Navbar / w3-top blocked the page to a fixed size, and h1 and p above do not appear-->
+    <div class="w3-top" style="padding-top: 20px;padding-right: 80px;">
+      <div class="w3-bar w3-theme-d2 w3-left-align">
+          <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+          <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right" style="padding-left: 10px;"></i>Logo</a>
+          <a href="team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Equipe</a>
+          <a href="products" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Serviços</a>
+          <span  onclick="document.getElementById('insuranceModal').style.display='block'"><a class="w3-bar-item w3-button w3-hide-small w3-hover-white">Convênios</a></span>
+          <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contato</a>
+          <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+              <i class="fa fa-bars" style="padding-left: 20px;"></i>
+          </a>
+          <div class="w3-dropdown-hover w3-hide-small">
+              <button class="w3-button" title="Notifications">Saiba Mais <i class="fa fa-caret-down"></i></button>
+              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                  <span id="photoCap"><a href="capture" class="w3-bar-item w3-button">Foto</a></span>
+                  <a href="#" class="w3-bar-item w3-button">Videos Educativos</a>
+                  <a href="themes" class="w3-bar-item w3-button">Temas</a>
+                  <a href="auth" class="w3-bar-item w3-button">Login</a>
+              </div>
+          </div>
+          <a href="http://www.google.com.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
+      </div>
+  </div>
+  
+<!-- Note -->
+<!-- <div style="background:yellow;padding:5px">
+  <h4 style="text-align:center">Resize the browser window to see the responsive effect.</h4>
+</div> -->
+
+<!-- Header -->
+<div class="w3-display-container w3-animate-opacity">
+        
+  <img src="/assets/images/gcanyon1.jpg" alt="Digest" style="width:100%;min-height:250px;max-height:600px;">
+      <div class="w3-container w3-display-topright w3-margin-bottom">    
+      <h1 style="font-size:4vw;padding-top: 40px;"><b>Digest</b></h1>
+      <p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>
+      <!-- <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdigest.com.br&width=90&layout=button&action=like&size=small&share=false&height=65&appId" width="90" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
+      <div class="fb-like" data-href="http://digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="true"></div>
+      </div>
+      <div class="w3-container w3-display-bottomleft w3-margin-bottom">
+          <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-large w3-theme w3-hover-teal" title="Contato"><a href="#contact">Deseja atendimento?</a></button>
+      </div>
+
+</div>
+
+       <!-- Modal -->
+       <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+            <header class="w3-container w3-teal w3-display-container">
+                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                <h4>Olá! Seja bem vindo..</h4>
+                <h5>Espero que encontre o que precisa <i class="fa fa-smile-o"></i></h5>
+            </header>
+            <div class="w3-container">
+                <p>Podemos dar mais informações </p>
+                <p>Entre em contato <a class="w3-text-teal" href="#contact">aqui</a> e faremos o máximo para ajudar</p>
+            </div>
+            <footer class="w3-container w3-teal">
+                <p>Modal footer</p>
+            </footer>
+        </div>
+    </div>
+
+    <div id="insuranceModal" class="w3-modal" onclick="document.getElementById('insuranceModal').style.display='none'">
+        <div class="w3-modal-content w3-card-4 w3-animate-top">
+            <header class="w3-container w3-teal w3-display-container">
+                <span onclick="document.getElementById('insuranceModal').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                <h4>Olá! Seja bem vindo..</h4>
+                <h5>Espero que encontre o que precisa <i class="fa fa-smile-o"></i></h5>
+            </header>
+
+            
+ <!-- From Coopend Site, whitch, itself, was built with 'Visual Composer - drag and drop page builder for WordPress'-->
+<div class="wf-td hgroup">
+    <h1 class="h2-size">Convênios</h1>
+</div>
+<div class="wf-td">
+    <div class="assistive-text"> Clique em qualquer lugar para fechar esta janela </div>
+</div>
+		
+	
+<div id="main" class="sidebar-none"  >
+<div class="main-gradient"></div>
+	<div class="wf-wrap">
+		<div class="wf-container-main">
+			<div id="content" class="content" role="main">
+                <div class="vc_row wpb_row vc_row-fluid dt-default" style="margin-top: 0px;margin-bottom: 0px">
+                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="standard-arrow list-divider bullet-top">
+                    <hr>
+                                    <ul>
+                                        <li>AMIL ASSISTENCIA MEDICA INTERNACIONAL LTDA</li>
+                                        <li>ASSEFAZ</li>
+                                        <li>BANCO CENTRAL</li>
+                                        <li>BASE AEREA DE FORTALEZA</li>
+                                        <li>BRADESCO</li>
+                                        <li>BRADESCO PROCTOLOGIA</li>
+                                        <li>CAFAZ</li>
+                                        <li>CAIXA ASSIST EMPREG EMPR BRASIL PESQ AGROP</li>
+                                        <li>POSTAL SAUDE</li>
+                                        <li>CAMED</li>
+                                        <li>CAPSESP</li>
+                                        <li>CASSI</li>
+                                        <li>EMBRATEL</li>
+                                        </ul>
+                    </div></div></div></div>
+                    <hr>
+                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="standard-arrow list-divider bullet-top">
+                                    <ul>
+                                        <li>FACHESF</li>
+                                        <li>FAMED</li>
+                                        <li>FUNCEF (SAUDE CAIXA)</li>
+                                        <li>FUSEX</li>
+                                        <li>FUSMA</li>
+                                        <li>GEAP</li>
+                                        <li>HOSPITAL INFANTIL ALBERT SABIN</li>
+                                        <li>IPM</li>
+                                        <li>ISSEC</li>
+                                        <li>ISSEC INTERIOR</li>
+                                        <li>JESUÍTAS DO BRASIL</li>
+                                        </ul>
+                    </div></div></div></div>
+                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                        <div class="vc_column-inner ">
+                            <div class="wpb_wrapper">
+                                <div class="standard-arrow list-divider bullet-top">
+                                    <ul>
+                                        <li>LIV SAÚDE</li>
+                                        <li>LIFE EMPRESARIAL</li>
+                                        <li>MEDISERVICE</li>
+                                        <li>MERCEEIROS</li>
+                                        <li>NORCLINICAS (INTERMEDICA)</li>
+                                        <li>NOTRE DAME SEGURADORA SA (INTERMEDICA)</li>
+                                        <li>PAS</li>
+                                        <li>PAS INTERIOR</li>
+                                        <li>PETROBRAS PETRÓLEO AMS</li>
+                                        <li>PETROBRAS DISFOR</li>
+                                        <li>PLAN ASSISTE</li>
+                                        <li>PROASA</li>
+                                        <li>REDE MAIS SAÚDE E VIDA</li>
+                                        <li>SUL AMERICA SERVICOS DE SAUDE SA</li>
+                                        <li>UNIMED (TODOS PLANOS)</li>
+                                        <li>VAI BEM</li>
+                                        <li>VITALLIS</li>
+                                    </ul>
+                    </div></div></div></div>
+</div></div></div></div></div>
+<!-- End of from Coopend -->
+
+
+            <footer class="w3-container w3-teal">
+                <p>Modal footer</p>
+            </footer>
+        </div>
+    </div>
+
+<!-- The flexible grid (content) -->
+<div>
+  <!-- <div class="side">
+    <h2>Nossos Serviços:</h2>
+    <div class="fakeimg" style="height:200px;">
+      <article id="txt1">
+      <ul class="article">
+          <li>Gastroenterologia</li>
+          <li>Endoscopia alta</li>
+          <li>Colonoscopia</li>
+          <li>Ecoendoscopia</li>
+          <li>Colangiopancreatografia retrógrada endoscópica-CPRE</li>
+          <li>Manometria esofágica e anorretal</li>
+          <li>Impedâncio-pHmetria</li>
+          <li>pHmetria sem sonda (Bravo)</li>
+      </ul>
+      </article>
+    </div>
+    <article id="txt2">
+      <h2 id="equipes">Equipe:</h2>
+      <ul class="article">
+          <li>Dr Daniel Viana</li>
+          <li>Enf Jarana Mota</li>
+          <li>Dra Larissa Elias</li>
+          <li>
+          <a href="mailto:miguel.sza@gmail.com">Dr Miguel A N Souza</a>
+          </li>
+          <li>Dra Samara Jacinto</li>
+          <li>Dr Tarciso Daniel</li>
+      </ul>
+</article>
+  </div> -->
+  <div class="main">
+    <h2>Temas de Interesse</h2>
+    <!-- Flex Container -->
+    <div class="row">
+      <!-- Flex Item -->
+      <div class="fakeimg">
+        <h3>Endoscopia Digestiva Alta</h3>
+        <div style="height:200px;">
+        <img src="/assets/images/LosAngeles.jpg" style="max-width:100%">
+        </div>
+      </div>
+      <!-- Flex Item -->
+      <div>
+        <p style="font-size:1.3vw;padding: 10px;">Esofagite de refluxo (Classificação de Los Angeles)</p>
+      </div>
+      <!-- Flex Item -->
+      <div class="fakeimg">
+        <h3>Manometria Alta Resolução</h3>
+        <div style="height:200px;">
+        <img src="/assets/images/manometria.jpg" style="max-width:100%;">
+        </div>
+      </div>
+      <!-- Flex Item -->
+      <div>
+        <p style="font-size:1.3vw;padding: 10px;">Manometria esofágica de alta resolução</p>
+      </div>
+      <!-- Flex Item -->
+      <div class="fakeimg">
+        <h3>Manometria Alta Resolução</h3>
+        <div style="height:200px;">
+        <img src="/assets/images/LosAngeles.jpg" style="max-width:100%;">
+        </div>
+      </div>
+      <!-- Flex Item -->
+      <div>
+        <p style="font-size:1.3vw;padding: 10px;">Manometria esofágica de alta resolução</p>
+      </div>
+      <!-- Flex Item -->
+      <div class="fakeimg">
+        <h3>Manometria Alta Resolução</h3>
+        <div style="height:200px;">
+        <img src="/assets/images/manometria.jpg" style="max-width:100%;">
+        </div>
+      </div>
+      <!-- Flex Item -->
+      <div>
+        <p style="font-size:1.3vw;padding: 10px;">Manometria esofágica de alta resolução</p>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+
+  <div class="container">
+
+  <div id="fb-root">
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v4.0"></script>
+  </div>
+
+      <article id="txt3">
+              <h2 id="tema">Tema da semana: CPRE</h2>
+              <a target="_blank" href="cpre.pdf">Texto completo</a>
+              <div class="myBox">
+              A CPRE é um procedimento cirúrgico por endoscopia. Logo distal ao estômago, o colédoco (canal da bile) desemboca no intestino delgado através de uma válvula chamada papila (esfíncter de Oddi). A bile produzida no fígado e acumulada na vesícula vai para o intestino através do colédoco. Ocorre que pedras (cálculos biliares) podem migrar da vesícula ou se formarem diretamente no colédoco (coledocolitíase). Neste caso, o paciente tem dor abdominal e pode ficar com os olhos e a pele amarelados (icterícia), assim como a urina. Pode ocorrer também febre e calafrios (colangite) ou inflamação do pâncreas (pancreatite). Esta situação exige tratamento cirúrgico e a via menos invasiva é a endoscópica. Pela CPRE, cortamos a papila (papilotomia), passamos acessórios para o interior do colédoco (cesta ou balão), e retiramos os cálculos.<hr style=color:#DDE0E3>
+              Em outras situações, ocorre obstrução do colédoco por tumores, como o do pâncreas. Nestes casos, inicialmente não há dor e sim uma icterícia progressiva. Pela CPRE, pode-se desobstruir temporariamente o colédoco com próteses apropriadas.<hr style=color:#DDE0E3>
+              Os exames de sangue importantes para o diagnóstico das obstruções do colédoco são principalmente as chamadas enzimas hepáticas (ALT, AST, gamaGT, fosfatase alcalina) e as bilirrubinas. O ultrassom abdominal frequentemente não mostra cálculos nem tumores obstruindo o colédoco, mas mostra uma dilatação deste, indicando que há de fato uma obstrução. A colangiorressonância magnética pode mostrar cálculos em torno de 5mm ou maiores. E a ecoendoscopia pode mostrar cálculos ou tumores menores ainda.
+              </div>
+
+<!--
+              <textarea name="tematext" style=width:99%;height:70%;color:rgb(109,110,106);border:none><p class="tema" style="padding-left: 10px">A CPRE é um procedimento cirúrgico por endoscopia. Logo distal ao estômago, o colédoco (canal da bile) desemboca no intestino delgado através de uma válvula chamada papila (esfíncter de Oddi). A bile produzida no fígado e acumulada na vesícula vai para o intestino através do colédoco. Ocorre que pedras (cálculos biliares) podem migrar da vesícula ou se formarem diretamente no colédoco (coledocolitíase). Neste caso, o paciente tem dor abdominal e pode ficar com os olhos e a pele amarelados (icterícia), assim como a urina. Pode ocorrer também febre e calafrios (colangite) ou inflamação do pâncreas (pancreatite). Esta situação exige tratamento cirúrgico e a via menos invasiva é a endoscópica. Pela CPRE, cortamos a papila (papilotomia), passamos acessórios para o interior do colédoco (cesta ou balão), e retiramos os cálculos.</p><hr>
+              <p class="tema" style="padding-left: 10px">
+              Em outras situações, ocorre obstrução do colédoco por tumores, como o do pâncreas. Nestes casos, inicialmente não há dor e sim uma icterícia progressiva. Pela CPRE, pode-se desobstruir temporariamente o colédoco com próteses apropriadas.</p><hr>
+              <p class="tema" style="padding-left: 10px">
+              Os exames de sangue importantes para o diagnóstico das obstruções do colédoco são principalmente as chamadas enzimas hepáticas (ALT, AST, gamaGT, fosfatase alcalina) e as bilirrubinas. O ultrassom abdominal frequentemente não mostra cálculos nem tumores obstruindo o colédoco, mas mostra uma dilatação deste, indicando que há de fato uma obstrução. A colangiorressonância magnética pode mostrar cálculos em torno de 5mm ou maiores. E a ecoendoscopia pode mostrar cálculos ou tumores menores ainda.
+              </p>
+              </textarea>
+-->
+      </article>
+
+      <aside class="asideContatos">
+          <h2 id="contatos">Contatos:</h2>
+              <ul>
+                  <p>Telefones (85):</p>
+                      <li>3252-5469</li>
+                      <li>3224-1547</li><br>
+                  <p>WhatsApp (85):</p>
+                      <li>99628-8800</li><br><br>
+                      <li><a href="mailto:contato@digest.com.br">Envie um e-mail</a></li>
+              </ul>
+      </aside>
+
+  </div>
+
+  </body>
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+  <div>
+      
+  </div>
+          <label>Compartilhe:</label>&nbsp;
+          <a class="w3-button w3-large w3-teal" href="https://www.facebook.com/sharer/sharer.php?u=http://www.digest.com.br/static/catalog/z-ph.png&&amp;redirect_uri=https%3A%2F%2Fwww.facebook.com%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+          &nbsp;
+          <a class="w3-button w3-large w3-teal" href="https://twitter.com/intent/tweet?url=http://www.digest.com.br/&amp;text=Estou+na+Digest:+Clínica de Gastroenterologia e Endoscopia &amp;hashtags=digestoficial" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          
+          <label>Veja também:</label>&nbsp;
+          <!-- <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a> -->
+          <a class="w3-button w3-large w3-blue" href="https://www.facebook.com/digestoficial" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+          <a class="w3-button w3-large w3-cyan" href="https://twitter.com/intent/tweet?url=http://www.digest.com.br/&amp;text=Estou+na+Digest:+Clínica de Gastroenterologia e Endoscopia &amp;hashtags=digestoficial" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+          <a class="w3-button w3-large w3-pink" href="https://www.instagram.com/digestoficial" target="_blank" rel="noopener" title="Instagram"><i class="fa fa-instagram"></i></a>
+          <!-- <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a> -->
+  <div>
+      &nbsp;
+      <p>Criado por <a href="http://www.digest.com.br" target="_blank">digest.com.br</a></p>
+  </div>
+  
+  <!-- <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+      <span class="w3-text w3-padding w3-teal w3-hide-small">Acima</span>
+      <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
+          <i class="fa fa-chevron-circle-up"></i></span></a>
+  </div> -->
+</footer>
+<div class="footer">
+  <address>Rua Antônio Augusto 1270, 1<sup>o</sup>andar, Fortaleza-CE, +55 85 3252-5469</address>
+  <div><a id="mailto" href="mailto:contato@digest.com.br">Envie um e-mail</a></div>
+</div>
+
+
+</html>

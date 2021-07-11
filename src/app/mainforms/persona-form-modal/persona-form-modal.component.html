@@ -1,0 +1,190 @@
+<h2 mat-dialog-title>Novo cliente</h2>
+
+
+<mat-dialog-content [formGroup]="form">
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Nome"
+               formControlName="name"
+               required>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Celular"
+               formControlName="mobile"
+               required>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="WhatsApp"
+               formControlName="whatsapp">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Telefone"
+               formControlName="telephone">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+            placeholder="e-mail"
+            formControlName="email">
+
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance = "fill">  
+        <mat-label> Enter your password </mat-label>  
+        <input matInput [type] = "hide ? 'password' : 'text'">  
+        <button mat-icon-button matSuffix (click) = "hide = !hide" [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hide">  
+        <mat-icon> {{hide ? 'visibility_off' : 'visibility'}} </mat-icon>  
+        </button>  
+    </mat-form-field>
+
+    <mat-form-field appearance = "fill">  
+        <mat-label> Enter the email ID </mat-label>  
+        <input matInput placeholder= "JTP@xyz.com" required>  
+        <mat-error *ngIf = "">{{getErrorMessage()}}</mat-error>  
+    </mat-form-field> -->
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Rua & No"
+               formControlName="street">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Complemento"
+               formControlName="complement">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="CEP"
+               formControlName="postalcode">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput type="date"
+                placeholder="DN"
+               formControlName="dob">
+
+        <mat-datepicker #myDatepicker></mat-datepicker>
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Data de Registro"
+               formControlName="registerdate">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <textarea matInput
+                placeholder="Comentários"
+               formControlName="comment">
+        </textarea>
+
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+
+        <mat-select placeholder="Select category"
+            formControlName="category">
+
+            <mat-option value="BEGINNER">
+                Beginner</mat-option>
+            <mat-option value="INTERMEDIATE">
+                Intermediate</mat-option>
+            <mat-option value="ADVANCED">
+                Advanced</mat-option>
+
+        </mat-select>
+
+    </mat-form-field> -->
+<!-- 
+    <mat-form-field>
+
+        <input matInput [matDatepicker]="myDatepicker"
+            formControlName="releasedAt">
+
+        <mat-datepicker-toggle matSuffix
+                               [for]="myDatepicker">
+
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #myDatepicker></mat-datepicker>
+
+    </mat-form-field> -->
+
+    <!-- <mat-form-field>
+
+        <textarea matInput placeholder="Description"
+            formControlName="longDescription">
+
+        </textarea>
+
+    </mat-form-field> -->
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button
+        class="mat-raised-button"
+        (click)="close()">
+            Close
+    </button>
+
+    <!--Probably no need fot the [mat-dialog-close] and cdkFocusInitial-->
+    <button
+        class="mat-raised-button mat-primary"
+        [mat-dialog-close]
+        cdkFocusInitial
+        (click)="save()">
+            Save
+    </button>
+
+</mat-dialog-actions>
+
+<!-- <div class = "example of Prefix & suffix text">  
+    <mat-form-field appearance = "fill">  
+      <mat-label> Enter your password </mat-label>  
+      <input matInput [type] = "hide ? 'password' : 'text'">  
+      <button mat-icon-button matSuffix (click) = "hide = !hide" [attr.aria-label] = "'Hide password'" [attr.aria-pressed] = "hide">  
+      <mat-icon> {{hide ? 'visibility_off' : 'visibility'}} </mat-icon>  
+      </button>  
+    </mat-form-field>  
+    
+    <mat-form-field appearance = "fill">  
+      <mat-label> Rupees </mat-label>  
+      <input matInput type = "number" class = "example-right-align">  
+      <span matPrefix> ? </span>  
+      <span matSuffix> .00 </span>  
+    </mat-form-field>
+</div>   -->
+  

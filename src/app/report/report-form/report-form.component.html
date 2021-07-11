@@ -1,0 +1,209 @@
+<!-- <div>
+    <mat-dialog-content [formGroup]="formReport">
+        <input matInput
+            readonly
+            placeholder="ID"
+            formControlName="event">
+        <mat-form-field appearance="fill" style="width: 25%">
+            <input cdkDropList matInput
+            placeholder="im1"
+            formControlName="esop">
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button"
+                (click)="close()">
+            Clear
+        </button>
+        <button class="mat-raised-button mat-primary"
+                (click)="saveForm()">
+            Save
+        </button>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <img mat-card-image src="./../assets/images/logo_circle.png">
+            </mat-card-header>
+        </mat-card>
+    </mat-dialog-actions>
+    
+</div> -->
+
+<!--  ######################### FORM ########################## -->
+
+<span *ngFor="let ev of events">
+    <span *ngIf="this.id == ev.id">
+        <span *ngFor="let per of personas">
+            <span *ngIf="per.id == ev.persona">
+                <ul>
+                    <label class="col-sm-2 col-form-label">
+                        {{per.name | uppercase}} (id: {{this.id}}) realizou {{ev.title | uppercase}} em {{ev.start | date: 'd/M/yy, h:mm a'}}.
+                    </label>
+                </ul>
+            </span>
+        </span>
+    </span>
+</span> 
+
+<div id="eef" class="demo-app-main">
+    <mat-dialog-content [formGroup]="formReport">
+        
+        <!-- <mat-form-field> -->
+            <input matInput
+            readonly
+            hidden
+            placeholder="ID"
+            formControlName="event">
+        <!-- </mat-form-field> -->
+        <p style="padding-left: 10px;">
+            <mat-form-field style="width: 32%">
+                <mat-select
+                matNativeControl
+                placeholder="Medicamentos"
+                formControlName="drugs">
+                <mat-option value="null">--</mat-option>
+                <mat-option value="base">lidocaína, dimeticona, fentanila, midazolam</mat-option>
+                <mat-option value="propofol">lidocaína, dimeticona, fentanila, midazolam, propofol</mat-option>    
+                <mat-option value="none">lidocaína, dimeticona</mat-option>
+                <mat-option value="other">outro</mat-option>
+                </mat-select>
+            </mat-form-field>&nbsp;&nbsp;
+          
+            <mat-form-field style="width: 32%">
+                <input matInput
+                placeholder="Equipamentos"
+                formControlName="equipment">
+            </mat-form-field>
+            
+            <mat-form-field style="width: 33%; padding-left: 10px;">
+                <input matInput
+                placeholder="Solicitante"
+                formControlName="assistant">
+            </mat-form-field>
+        </p>
+        
+        <table style="width: 100%" cellspacing="10">
+
+            <tr>
+                <td>
+                    <mat-form-field cdkDropList appearance="fill" style="width: 100%">
+                        <textarea matInput
+                        placeholder="Faringe"
+                        formControlName="phar">Passagem fácil e sem traumas pelo esfíncter superior do esôfago, sob visão direta.</textarea>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <textarea matInput
+                        placeholder="Estômago"
+                        formControlName="stom"></textarea>
+                    </mat-form-field>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <textarea matInput
+                        placeholder="Esôfago"
+                        formControlName="esop"></textarea>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <textarea matInput
+                        placeholder="Duodeno"
+                        formControlName="duod"></textarea>
+                    </mat-form-field>
+                </td>
+
+            </tr>
+
+        </table>
+
+        <table style="width: 100%">
+            <tr>
+                <td style="padding-left: 5px;">
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                        placeholder="Conclusão1"
+                        formControlName="conc1">
+                    </mat-form-field>
+                </td>
+                <td style="padding-left: 5px;">
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                        placeholder="Conclusão2"
+                        formControlName="conc2">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-left: 5px;"> 
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                        placeholder="Conclusão3"
+                        formControlName="conc3">
+                    </mat-form-field>
+                </td>
+                <td style="padding-left: 5px;">
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                        placeholder="Conclusão4"
+                        formControlName="conc4">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-left: 5px;">
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                        placeholder="Conclusão5"
+                        formControlName="conc5">
+                    </mat-form-field>
+                </td>
+                <td style="padding-left: 5px;">
+                    <mat-form-field style="width: 100%">
+                        <input matInput
+                        placeholder="Conclusão6"
+                        formControlName="conc6">
+                    </mat-form-field>
+                </td>
+            </tr>
+
+        </table>
+
+        <p>
+            <mat-form-field style="width: 50%">
+                <textarea matInput
+                placeholder="Complicações"
+                formControlName="complications"></textarea>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field style="width: 50%">
+                <textarea matInput
+                placeholder="Event"
+                formControlName="event"></textarea>
+            </mat-form-field>
+        </p>
+
+    </mat-dialog-content>
+    
+    <mat-dialog-actions>
+    
+        <button class="mat-raised-button"
+                (click)="close()">
+            Clear
+        </button>
+    
+        <button class="mat-raised-button mat-primary"
+                (click)="saveForm()">
+            Save
+        </button>
+    
+    </mat-dialog-actions>
+</div>

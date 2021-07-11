@@ -1,0 +1,178 @@
+
+<div class="demo-app-main">
+<h2 mat-dialog-title>Novo evento</h2>
+<!-- <span *ngIf="data">OKKKK!: {{data.title}}</span>
+<span *ngIf="data == null || undefined">Nannn!</span> -->
+<mat-dialog-content [formGroup]="form">
+    <mat-card-actions class="course-actions">
+        <fa-icon [icon]="faPlus"
+          (click)="createPersona()"
+          [ngClass]="{'green': 'green'}">
+        </fa-icon>
+    </mat-card-actions>
+    <mat-form-field>
+        <input type="text" #searchBox (input)="search(searchBox.value)"
+        placeholder="Selecione um cliente"
+        aria-label="Number"
+        matInput
+        formControlName="persona"
+        [matAutocomplete]="autos"
+        required>
+        <mat-autocomplete #autos="matAutocomplete" [displayWith]="displayFn">
+            <!--async is for observable; personas is a Persona[] array.
+            filteredPers is empty-->
+            <mat-option>--</mat-option>
+            <mat-option id="pers" *ngFor="let per of personas$ | async" [value]="per">
+            <!-- <mat-option *ngFor="let per of filteredPers | async" [value]="per"> -->
+              {{per.name | slice : 0:5}}..{{per.name | slice : 8}}
+              <!-- {{per.email | slice : 5}} -->
+              <!-- type checking does not accept a pipe with per.dob -->
+              {{per.dob}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-card-actions class="course-actions">
+        <fa-icon [icon]="faPlus"
+          (click)="createKollege()"
+          [ngClass]="{'green': 'green'}">
+        </fa-icon>
+    </mat-card-actions>
+    <mat-form-field>
+        <mat-select type="text" placeholder="Médico" formControlName="kollege" required>
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let kol of kollegen" [value]="kol">{{kol.name | uppercase}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions class="course-actions">
+        <fa-icon [icon]="faPlus"
+          (click)="createPartner()"
+          [ngClass]="{'green': 'green'}">
+        </fa-icon>
+    </mat-card-actions>
+    <mat-form-field>
+        <input type="text" #searchBox (input)="search(searchBox.value)"
+        placeholder="Selecione um parceiro"
+        aria-label="Number"
+        matInput
+        formControlName="partner"
+        [matAutocomplete]="autos"
+        required>
+        <mat-autocomplete #autos="matAutocomplete" [displayWith]="displayFn">
+            <!--async is for observable; personas is a Persona[] array.
+            filteredPers is empty-->
+            <mat-option>--</mat-option>
+            <mat-option id="partners" *ngFor="let partner of partners$ | async" [value]="partner">
+            <!-- <mat-option *ngFor="let per of filteredPers | async" [value]="per"> -->
+              {{partner.name | slice : 0:5}}..{{partner.name | slice : 8}}
+              <!-- {{per.email | slice : 5}} -->
+              <!-- type checking does not accept a pipe with per.dob -->
+              {{partner.crm}}
+            </mat-option>
+        </mat-autocomplete>
+
+        <!-- <input matInput
+        type="text"
+        placeholder="Solicitante"
+        formControlName="partner"
+        > -->
+    </mat-form-field>
+
+    <mat-form-field floatLabel="auto" appearance="fill" color="accent">
+        <mat-label>Exame</mat-label>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        <input matInput
+        placeholder="Exame"
+        formControlName="title"
+        >
+        <!--<mat-select formControlName="title">
+            <mat-option>--</mat-option>ß
+            <mat-option *ngFor="let item of exData" [value]="item">
+                {{item}}
+            </mat-option>
+        </mat-select>-->
+        <mat-hint align='end'>Full name</mat-hint>
+    </mat-form-field>
+
+    <!-- <mat-form-field>
+        <mat-label>Datepicker Label</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="start">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-icon matSuffix>mood_bad</mat-icon>
+    </mat-form-field> -->
+
+    <mat-form-field>
+        <input matInput
+        type="date"
+        placeholder="Data"
+        formControlName="start"
+        >
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        type="time"
+        placeholder="Hora"
+        formControlName="time"
+        >
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Color"
+        formControlName="color">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Status"
+        formControlName="status">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Convênio"
+        formControlName="insurance">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Sala"
+        formControlName="resourceId"
+       >
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Extra"
+        formControlName="addtitle1">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Extra"
+        formControlName="addtitle2">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Extra"
+        formControlName="addtitle3">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+        placeholder="Comentários"
+        formControlName="comment">
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button class="mat-raised-button" mat-flat-button color="warn"
+            (click)="close()">
+        Limpar
+    </button>
+    &nbsp;
+    <button class="mat-raised-button mat-primary" mat-flat-button color="primary"
+            (click)="save()">
+        Salvar
+    </button>
+
+</mat-dialog-actions>
+</div>

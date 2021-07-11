@@ -1,0 +1,15 @@
+<br>
+<br>
+<div *ngFor="let ev of events">
+<div *ngIf="eventReports.length > 0">
+  <p>If eventReports Length: {{eventReports.length}}</p>
+  <div *ngFor="let item of eventReports"><p *ngIf="ev.id === item.event">:::{{item.event}} {{ev.id}}</p>{{item.im1.slice(0,50)}}....</div>
+</div>
+</div>
+  <p>No eventReports</p>
+<div>
+  <img id="photo">
+  <button id="getAttr" (click)="setAttr()">Get Im</button>
+</div>
+  
+<!-- <img *ngFor="let item of eventReports" src="item.img1"> -->

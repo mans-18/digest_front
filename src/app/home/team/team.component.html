@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<style>
+</style>
+</head>
+<body>
+
+      <!-- Navbar / w3-top blocked the page to a fixed size, and h1 and p above do not appear-->
+      <div class="w3-top" style="padding-top: 20px;padding-right: 80px;">
+        <div class="w3-bar w3-theme-d2 w3-left-align">
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right" style="padding-left: 10px;"></i>Logo</a>
+            <a href="team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Equipe</a>
+            <a href="products" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Serviços</a>
+            <a href="insurance" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Convênios</a>
+            <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contato</a>
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars" style="padding-left: 20px;"></i>
+            </a>
+            <div class="w3-dropdown-hover w3-hide-small">
+                <button class="w3-button" title="Notifications">Saiba Mais <i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                    <span id="photoCap"><a href="capture" class="w3-bar-item w3-button">Foto</a></span>
+                    <a href="#" class="w3-bar-item w3-button">Videos Educativos</a>
+                    <a href="themes" class="w3-bar-item w3-button">Temas</a>
+                    <a href="auth" class="w3-bar-item w3-button">Login</a>
+                </div>
+            </div>
+            <a href="http://www.google.com.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
+        </div>
+    </div>
+    
+	<!-- Image Header -->
+  <div class="w3-display-container w3-animate-opacity">
+        
+    <img src="/assets/images/gcanyon1.jpg" alt="Digest" style="width:100%;min-height:250px;max-height:600px;">
+        <div class="w3-container w3-display-topright w3-margin-bottom">    
+        <h1 style="font-size:4vw;padding-top: 40px;"><b>Digest</b></h1>
+        <p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>
+        <!-- <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdigest.com.br&width=90&layout=button&action=like&size=small&share=false&height=65&appId" width="90" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
+        <div class="fb-like" data-href="http://digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
+        </div>
+        <div class="w3-container w3-display-bottomleft w3-margin-bottom">
+            <button class="w3-button w3-large w3-theme w3-hover-teal" title="Contato"><a href="#contact">Deseja atendimento?</a></button>
+        </div>
+
+</div>   
+
+    <!-- Team Container -->
+    <div class="w3-container w3-padding-64 w3-center" id="team">
+        <h2>Nossa Equipe</h2>
+        
+        <div class="w3-row"><br>
+
+        <div style="background-color: rgb(217, 233, 248);">
+          <h3>Recepção</h3>
+        <div class="w3-quarter">
+          <img src="/assets/images/Icons/lava1.png" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+          <h3>Tércia Brasileiro</h3>
+          <p>Supervisão de recepção</p>
+        </div>
+        
+        <div class="w3-quarter">
+          <img src="/assets/images/Icons/lava2.png" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+          <h3>Gabriela</h3>
+          <p>Recepção</p>
+        </div>
+        </div>
+
+        <div class="w3-row"><br>
+        <div style="background-color: rgb(217, 233, 248);">
+         <h3>Enfermagem</h3>
+        <div class="w3-quarter">
+          <img src="/assets/images/Icons/avatarOndulado.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+          <h3>Jarana Mota</h3>
+          <p>Enfermeira</p>
+        </div>
+        
+        <div class="w3-quarter">
+          <img src="/assets/images/Icons/avatarRuiva.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+          <h3>Lucileia</h3>
+          <p>Técnico</p>
+        </div>
+        
+        <div class="w3-quarter">
+            <img src="/assets/images/Icons/Wash_hands_Clean_Hygiene_Prevention-512.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+            <h3>Gloria Stefane</h3>
+            <p>Técnico</p>
+          </div>
+        </div>
+        </div>
+        
+        <div class="w3-row">
+          <div  style="background-color: rgb(217, 233, 248);">
+            <h3>Médicos(as)</h3>
+          <div class="w3-quarter">
+            <img onclick="document.getElementById('id01').style.display='block'" src="/assets/images/Icons/avatarLoira.webp" alt="Digest" style="width:45%;" class="w3-circle w3-hover-opacity">
+            <h3>Larissa Elias Soares</h3>
+            <p>Médica</p>
+          </div>
+          
+          <div class="w3-quarter">
+            <img src="/assets/images/Icons/avatarNovo.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+            <h3>Daniel Viana</h3>
+            <p>Médico</p>
+          </div>
+
+          <div class="w3-quarter">
+            <img src="/assets/images/Icons/web_development_character_builder___man_design_computer_monitor_work-512.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+            <h3>Loraine</h3>
+            <p>Médica</p>
+          </div>
+
+          <div class="w3-quarter">
+            <img src="/assets/images/Icons/avatarMoreno.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+            <h3>Tarciso Daniel Rocha</h3>
+            <p>Médico</p>
+          </div>
+
+          <div class="w3-quarter">
+            <img src="/assets/images/Icons/avatarPardo.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+            <h3>Miguel A N Souza</h3>
+            <p>Médico</p>
+          </div>
+
+          <div class="w3-quarter">
+            <img src="/assets/images/Icons/avatarCurto.webp" alt="Digest" style="width:45%" class="w3-circle w3-hover-opacity">
+            <h3>Samara Lima</h3>
+            <p>Médica</p>
+          </div>
+          </div>
+        </div>
+        </div>
+        </div>
+              <!-- Modal -->
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+        <div id="id02" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+        <div id="id03" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+        <div id="id04" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+        <div id="id05" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+        <div id="id06" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+        <div id="id07" class="w3-modal">
+          <div class="w3-modal-content w3-card-4 w3-animate-top">
+              <header class="w3-container w3-teal w3-display-container">
+                  <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
+                  <h4>Dra Larissa</h4>
+                  <h5>Gastroenterologista & Endoscopista <i class="fa fa-smile-o"></i></h5>
+              </header>
+              <div class="w3-container">
+                  <p>Olá! Sou graduada pela Universidade Federal do Ceará, e tenho título de especialista pela Federação Brasileira de Gastroenterologia e pela Sociedade Brasileira de Endoscopia Digestiva.</p>
+                  
+              </div>
+              <footer class="w3-container w3-teal">
+                <p>Entre em contato <a class="w3-text-red" href="#contact">aqui</a> e farei o máximo para ajudar</p>
+              </footer>
+          </div>
+        </div>
+
+</body>
+                                <!-- Footer -->
+                                <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
+                                  <div>
+                                      
+                                  </div>
+                                          <label>Compartilhe:</label>&nbsp;
+                                          <a class="w3-button w3-large w3-teal" href="https://www.facebook.com/sharer/sharer.php?u=http://www.digest.com.br/static/catalog/z-ph.png&&amp;redirect_uri=https%3A%2F%2Fwww.facebook.com%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                          &nbsp;
+                                          <a class="w3-button w3-large w3-teal" href="https://twitter.com/intent/tweet?url=http://www.digest.com.br/&amp;text=Estou+na+Digest:+Clínica de Gastroenterologia e Endoscopia &amp;hashtags=digestoficial" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+                                          &nbsp;
+                                          &nbsp;
+                                          &nbsp;
+                                          
+                                          <label>Veja também:</label>&nbsp;
+                                          <!-- <a class="w3-button w3-large w3-teal" href="javascript:void(0)" title="Google +"><i class="fa fa-google-plus"></i></a> -->
+                                          <a class="w3-button w3-large w3-blue" href="https://www.facebook.com/digestoficial" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                          <a class="w3-button w3-large w3-cyan" href="https://twitter.com/intent/tweet?url=http://www.digest.com.br/&amp;text=Estou+na+Digest:+Clínica de Gastroenterologia e Endoscopia &amp;hashtags=digestoficial" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+                                          <a class="w3-button w3-large w3-pink" href="https://www.instagram.com/digestoficial" target="_blank" rel="noopener" title="Instagram"><i class="fa fa-instagram"></i></a>
+                                          <!-- <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a> -->
+                                  <div>
+                                      &nbsp;
+                                      <p>Criado por <a href="http://www.digest.com.br" target="_blank">digest.com.br</a></p>
+                                  </div>
+                                  
+                                  <!-- <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+                                      <span class="w3-text w3-padding w3-teal w3-hide-small">Acima</span>
+                                      <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
+                                          <i class="fa fa-chevron-circle-up"></i></span></a>
+                                  </div> -->
+                              </footer>
+</html>

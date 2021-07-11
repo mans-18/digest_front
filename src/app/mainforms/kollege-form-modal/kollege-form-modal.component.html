@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Novo médico</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="Nome"
+               formControlName="name">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="CRM"
+               formControlName="crm">
+
+    </mat-form-field>
+
+    <mat-form-field>
+
+        <input matInput
+                placeholder="e-mail"
+               formControlName="email">
+
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+
+    <button mat-button
+            class="mat-raised-button"
+            (click)="onNoAction()">
+                Close
+    </button>
+
+    <button mat-button
+            class="mat-raised-button mat-primary"
+            [mat-dialog-close]
+            cdkFocusInitial
+            (click)="save()">
+                Save
+    </button>
+
+</mat-dialog-actions>

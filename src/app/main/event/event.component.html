@@ -1,0 +1,210 @@
+<!-- <mat-form-field>
+  <mat-label>Filtro</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field> -->
+<div id="ec" #ec>
+<!-- <button (click)="toggleDelFunction()">Cancelados</button>
+<button (click)="toggleActiveFunction()">Ativos</button> -->
+<button mat-button (click)="openDialogx('Novo',{})" mat-flat-button color="primary">Novo</button>
+<div style="margin-left: 10px;">
+  <mat-form-field *ngFor="let filter of filterSelectObj" style="padding-left: 0px;padding-right: 10px;padding-top: 40px;">
+    <mat-label>{{filter.name}}</mat-label>
+    <select matNativeControl name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+      (change)="filterChange(filter,$event)">
+      <option value="">-- Select {{filter.name}} --</option>
+      <!-- <option [value]="per" *ngFor="let per of personas">{{filter.id == per.id? '': per.name}}</option> -->
+      <option [value]="item" *ngFor="let item of filter.options">{{item}}</option>
+    </select>
+  </mat-form-field>
+  &nbsp;
+  <button mat-flat-button color="warn" (click)="resetFilters()">Reset</button>
+  &nbsp;
+  <button id="toggleDelBt" (click)="toggleDelShow()" mat-flat-button color="warn">{{ toggleName }}</button>
+</div>
+
+<div class="mat-elevation-z8">
+  <!--### 3x faster if I put the ngFor at the table than at the above div-->
+  <table mat-table [dataSource]="utilsService.dataSource" #evtable matSort>
+    <!-- <span *ngFor="let ev of eventss">
+      <span *ngIf="toggleEvs(ev)"></span>
+    </span> -->
+    <!-- Confirm Column -->
+    <ng-container matColumnDef="confirm">
+      <th class="col-center" style="background-color: rgb(189, 250, 189);" mat-header-cell *matHeaderCellDef mat-sort-header> Confirma? </th>
+      <td class="col-center" style="background-color: rgb(189, 250, 189);" mat-cell *matCellDef="let ev">
+        <span *ngIf="ev.status == 'finalizado'">
+          <fa-icon [icon]="faCheck" [ngClass]="{'blue':5>4}"></fa-icon>
+        </span>
+        <span *ngIf="ev.status == 'agendado'"  (click)="confirmEvent(ev)">
+          <mat-icon class="handPointer" matSuffix>help_outline</mat-icon>
+        </span>
+        <span *ngIf="ev.status == 'cancelado'"  (click)="confirmEvent(ev)">
+          <mat-icon matSuffix>sentiment_dissatisfied</mat-icon>
+        </span>
+        <span *ngIf="ev.status == 'confirmado'">
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </span>
+      </td>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </ng-template>
+
+    <!-- Del Column TO DELETE -->
+    <ng-container matColumnDef="del">
+      <th class="col-center" style="background-color:rgb(252, 235, 252)" mat-header-cell *matHeaderCellDef mat-sort-header> Cancela? </th>
+      <span *ngFor="let ev of eventss">
+      <td class="col-center" style="background-color:rgb(252, 235, 252)" mat-cell *matCellDef="let ev" (click)="deleteEvent(ev)">
+        <fa-icon  *ngIf="trashOn" [icon]="faTrash" [ngClass]="{'orange': 5 > 4}"></fa-icon>
+      </td>
+      </span>
+    </ng-container>
+
+    <!-- Start Column -->
+    <ng-container matColumnDef="start">
+      <span>
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+      <span *ngFor="let ev of eventss; let i = index">
+      <td class="col-center" mat-cell *matCellDef="let ev">
+        
+          <!--### index = 0 limits the loop to the first one; SEEMS TO MAKE NO DIFF -->
+          <a *ngIf="i == 0" routerLink="/event-form-detail/{{ev.id}}">{{ev.start | date: 'd/M/yy, h:mm a'}}</a>
+          <!-- <a *ngIf="i == 0" routerLink="/report/{{ev.id}}">{{ev.start}}</a> -->
+      
+      </td>
+    </span>
+    </span>
+    </ng-container>
+
+    <!-- Exame Column -->
+    <ng-container matColumnDef="title">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Exame </th>
+      <!-- <span *ngFor="let ev of eventss"> -->
+      <td class="col-center" mat-cell *matCellDef="let ev" (click)="confirmEvent(ev)">
+        {{ev.title}} {{ev.id}} {{ev.partner}} {{ev.addtitle2}}
+      </td>
+      <!-- </span> -->
+    </ng-container>
+
+    <!-- Convênio Column -->
+    <ng-container matColumnDef="insurance">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Convênio </th>
+      <td class="col-center" mat-cell *matCellDef="let row" [class.hidden]="true"> {{row.insurance}} </td>
+    </ng-container>
+
+    <!-- Persona Column -->
+    <ng-container matColumnDef="persona">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+      <td class="col-center" mat-cell *matCellDef="let row" [style.color]="row.persona">
+        <span *ngFor='let per of personas'>
+          <span *ngIf='per.id === row.persona'>
+            <a routerLink="/persona-form-detail/{{per.id}}">{{per.name}} /{{per.mobile}} /{{per.telephone}}</a>
+          </span>
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Kollege Column -->
+    <ng-container matColumnDef="kollege">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Médico </th>
+      <td class="col-center" mat-cell *matCellDef="let row" [style.color]="row.kollege">
+        <span *ngFor='let kol of kollegen'>
+          <span *ngIf='kol.id === row.kollege'>
+            {{kol.name}}
+          </span>
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Partner Column -->
+    <ng-container matColumnDef="partner">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Parceiro </th>
+      <td class="col-center" mat-cell *matCellDef="let row" [style.color]="row.partner">
+        <span *ngFor='let partner of partners'>
+          <span *ngIf='partner.id === row.partner'>
+            {{partner.name}}
+          </span>
+        </span>
+      </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+        <td class="col-center" mat-cell *matCellDef="let row">
+          <!-- <span *ngFor="let ev of eventss" (click)="deleteEvent(ev)">
+            <span *ngIf="row == ev.status">-->
+              <a (click)="openDialogx('Atualizar',row)">{{row.status}}</a>
+            <!-- </span>
+          </span> -->
+        </td>
+    </ng-container>
+
+    <!-- Comment Column -->
+    <ng-container matColumnDef="comment">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Comentários </th>
+      <td class="col-center" mat-cell *matCellDef="let row"> {{row.comment}} </td>
+    </ng-container>
+
+    <!-- Restore Column -->
+    <ng-container matColumnDef="restore">
+      <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Restaurar </th>
+      <td class="col-center" mat-cell *matCellDef="let row">
+        <a style="color:rgb(29, 85, 168); cursor: pointer" (click)="putBackDeletedEvent(row)">Restaurar</a>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th class="col-center" style="background-color:rgb(252, 235, 252)" mat-header-cell *matHeaderCellDef> Ação </th>
+      <td class="col-center" style="background-color:rgb(252, 235, 252)" mat-cell *matCellDef="let row"> 
+        <a style="color:rgb(29, 85, 168); cursor: pointer" (click)="openDialogx('Atualizar',row)">Editar</a>
+        <a style="color:rgb(160, 36, 36); cursor: pointer" (click)="openDialogx('Apagar',row)">{{apagarLabel}}</a>  
+      </td>
+    </ng-container>
+
+    <!-- Report Column -->
+    <ng-container matColumnDef="laudo">
+      <th class="col-center" style="background-color:rgb(252, 235, 252)" mat-header-cell *matHeaderCellDef> Laudo </th>
+      <span *ngFor="let ev of eventss; let i = index">
+      <td class="col-center" style="background-color:rgb(252, 235, 252)" mat-cell *matCellDef="let ev"> 
+        <a id="evID" style="color:rgb(4, 156, 57); cursor: pointer" *ngIf="i == 0" routerLink="/report-form/{{ev.id}}">Laudo {{ev.id}}</a>
+      </td>
+      </span>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    
+    <!-- <mat-row *matRowDef="let row" [class.hidden]="YOUR_IF_HERE"></mat-row> -->
+
+    </tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <!-- <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr> -->
+
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<report-form>
+</report-form>
+<!-- <ol>
+  <li>
+    <mat-form-field>
+      <mat-label>What's your name?</mat-label>
+      <input matInput [(ngModel)]="name">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick one</button>
+  </li>
+  <li *ngIf="animal">
+    You chose: <i>{{animal}}</i>
+  </li>
+</ol> -->
+</div>

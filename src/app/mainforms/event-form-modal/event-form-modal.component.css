@@ -1,0 +1,14 @@
+.mat-form-field {
+    display: block;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.demo-app-main {
+    /* flex-grow: 1; */
+    padding: 3em;
+    column-count: 2;
+}

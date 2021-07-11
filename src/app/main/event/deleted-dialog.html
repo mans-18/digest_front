@@ -1,0 +1,9 @@
+<h2>Clique em restaurar para recuperar o evento</h2>
+
+<p>Exames Cancelados</p>
+<ol>
+    <li *ngFor="let item of local_data">
+        {{item.start | date: 'd/M/yy, h:mm a'}}, {{item.title}}, {{item.persona}}, {{item.id}}
+        <!-- <button (click)="putBackDeletedEvent(item)" mat-flat-button color="warn">Put Back</button> -->
+    </li>
+</ol> -->

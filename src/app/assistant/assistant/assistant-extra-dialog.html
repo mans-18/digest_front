@@ -1,0 +1,21 @@
+<!-- EventStatusDialog -->
+<h1 mat-dialog-title>Você vai :: <strong>{{action}}</strong></h1>
+<div mat-dialog-content>
+    <mat-form-field *ngIf="action !== 'Apagar'; else elseTemplate">
+        <!-- <input placeholder="{{action}} Name" matInput [(ngModel)]="local_data.status"> -->
+        <mat-select type="text" placeholder="Extra" [(ngModel)]="local_data.addtitle2">
+            <mat-option>--</mat-option>
+            <mat-option value="polipectomia">Polipectomia</mat-option>
+            <mat-option value="hemostasia">Hemostasia</mat-option>
+            <mat-option value="ligadura">Ligadura</mat-option>
+            <mat-option value="dilatação">Dilatação</mat-option>
+          </mat-select>
+    </mat-form-field>
+    <ng-template #elseTemplate>
+        Deseja realmente apagar <b>{{local_data.title}} em {{local_data.start | date: 'dd/MM/YY hh:mm a'}}</b>?
+    </ng-template>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="doAction()">{{action}}</button>
+    <button mat-button (click)="closeDialogx()" mat-flat-button color="warn">Cancelar</button>
+</div>

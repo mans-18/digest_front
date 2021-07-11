@@ -1,0 +1,204 @@
+<!-- debug -->
+<div *ngFor="let product of events; let i = index">
+    <ul>{{product.id}}</ul>
+</div>
+
+<div class="demo-app-main"><mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <h2 mat-dialog-title>Evento</h2>
+    <!-- <span *ngIf="eventFormDetail">OKKKK!</span> -->
+    <!-- <span *ngIf="data == null || undefined">Nannn!</span> -->
+    <!-- <form [formGroup]="eventFormDetail"> -->
+    <!-- <form *ngIf="eventFormDetail" [formGroup]="eventFormDetail" (ngSubmit)="saveFormX()"> -->
+    
+    <form *ngIf="eventFormDetail" [formGroup]="eventFormDetail" (ngSubmit)="saveForm()">
+        <mat-form-field floatLabel="auto" appearance="fill" color="accent">
+            <!-- <span *ngIf="eventFormDetail.value.title"> -->
+            <mat-label style="font-weight: bold;">Exame:</mat-label>
+            <p></p>         
+                <input matInput
+                placeholder="Exame"
+                formControlName="title"
+                >
+            <!-- </span> -->
+            <mat-hint align='end'>Full name</mat-hint>
+        </mat-form-field>
+        <span></span>
+        <mat-form-field>
+            <!-- <p>Deve ter a forma: dd/mm/aaaa</p> -->
+            <input matInput
+            type="date"
+            placeholder="Data"
+            formControlName="startDate"
+            >
+            <mat-hint align='end'>Marcado para: {{day}}/{{month}}/{{year}}</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <!-- <p>Deve ter a forma: hh:mm</p> -->
+            <input matInput
+            type="time"
+            placeholder="Hora"
+            formControlName="startTime"
+            >
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Color"
+            formControlName="color">
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+            <input matInput
+            placeholder="Status"
+            formControlName="status">
+        </mat-form-field> -->
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Convênio"
+            formControlName="insurance">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Sala"
+            formControlName="resourceId">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Extra"
+            formControlName="addtitle1">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Extra"
+            formControlName="addtitle2">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Extra"
+            formControlName="addtitle3">
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput
+            placeholder="Comentários"
+            formControlName="comment">
+        </mat-form-field>
+
+    <!-- </form> -->
+    
+<!-- <form *ngIf="eventFormDetail" [formGroup]="eventFormDetail" (ngSubmit)="saveForm()"> -->
+  
+    
+    <!-- <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Estado:</label>
+        <div class="col-sm-10">
+            <select class="form-control" type="text" formControlName="status" default="Agendado">
+                <option>--</option>
+                <option>Agendado</option>
+                <option>Confirmado</option>
+                <option>Aguardando</option>
+                <option>Em Atendimento</option>
+                <option>Cancelado</option>
+            </select>
+        </div>
+    </div> -->
+    <div class="form-group row">
+        <!-- <label class="col-sm-2 col-form-label">Comentários:</label> -->
+        <div class="col-sm-10">
+            <!-- <input class="form-control" type="text" formControlName="comment"> -->
+            <mat-form-field>
+              <mat-select type="text" placeholder="Estado" formControlName="status">
+                <mat-option>--</mat-option>
+                <mat-option value="agendado">Agendado</mat-option>
+                <mat-option value="confirmado">Confirmado</mat-option>
+                <mat-option value="aguardando" disabled>Aguardando</mat-option>
+                <mat-option value="em_atendimento" disabled>Em Atendimento</mat-option>
+                <mat-option value="finalizado">Finalizado</mat-option>
+                <mat-option value="cancelado">Cancelado</mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+  
+  
+    <div hidden id="per-plus" class="form-group row">
+        <label class="col-sm-2 col-form-label">
+            <fa-icon [icon]="faPlus"
+            (click)="newPersona()"
+            [ngClass]="{'green': 'green'}">
+            </fa-icon>
+            Paciente:</label>
+
+    <div class="col-sm-10">
+
+        <select class="form-control" type="text" formControlName="persona" *ngFor="let ev of events" [hidden]="this.id !== ev.id">
+            <option [ngValue]="null" disabled>Manter o médico</option>
+            <option *ngFor="let per of personas" [hidden]="per.id !== ev.persona" [ngValue]="per">
+             {{ per.name | uppercase }}
+            </option>
+        </select>
+        
+        <input hidden class="form-control" type="text" formControlName="persona">
+        <!--No effect:-->
+        <div *ngIf="persona.invalid && (persona.dirty || persona.touched)" class="alert alert-danger">
+            <div *ngIf="persona.errors.required">
+                Name is required.
+            </div>
+        </div>
+       
+
+    </div>
+    </div>
+
+    <!-- <div class="col-sm-10">
+        <input class="form-control" type="text" formControlName="kollege">
+    </div>
+   -->
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">
+            <fa-icon id="kol-plus" [icon]="faPlus"
+            (click)="newKollege()"
+            [ngClass]="{'green': 'green'}">
+            </fa-icon>&nbsp;&nbsp;Médico:</label>
+    <div class="col-sm-10">
+        <!-- <div *ngIf="!this.id"> -->
+            <mat-form-field>
+            <input matInput type="text" formControlName="kollege">
+            </mat-form-field>
+        <!--No effect:-->
+        <div *ngIf="kollege.invalid && (kollege.dirty || kollege.touched)" class="alert alert-danger">
+            <div *ngIf="kollege.errors.required">
+                Name is required.
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <label class="col-sm-2 col-form-label">
+        <fa-icon id="kol-plus" [icon]="faPlus"
+        (click)="newPersona()"
+        [ngClass]="{'green': 'green'}">
+        </fa-icon>&nbsp;&nbsp;Paciente:
+    </label>
+    <span *ngFor="let ev of events">
+        <!--'this' refers to the component-->
+        <span *ngIf="this.id == ev.id">
+            <span *ngFor="let per of personas">
+                <span *ngIf="per.id == ev.persona">
+                    <p>{{per.name}}</p>
+                </span>
+            </span>
+        </span>
+    </span>
+
+  <button type="submit" mat-flat-button color="primary">
+    Salvar
+  </button>
+ 
+  </form>
