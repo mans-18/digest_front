@@ -42,15 +42,11 @@
     <!-- Navbar / w3-top blocked the page to a fixed size, and h1 and p above do not appear-->
     <div class="w3-top" style="padding-top: 20px;padding-right: 80px;">
         <div class="w3-bar w3-theme-d2 w3-left-align">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right" style="padding-left: 10px;"></i>Logo</a>
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" (click)="openNav()"><i class="fa fa-bars"></i></a>            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right" style="padding-left: 10px;"></i></a>
             <a href="team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Equipe</a>
             <a href="products" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Serviços</a>
             <span  onclick="document.getElementById('insuranceModal').style.display='block'"><a class="w3-bar-item w3-button w3-hide-small w3-hover-white">Convênios</a></span>
             <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contato</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars" style="padding-left: 20px;"></i>
-            </a>
             <div class="w3-dropdown-hover w3-hide-small">
                 <div class="w3-button" title="Notifications">Saiba Mais <i class="fa fa-caret-down"></i></div>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block">
@@ -60,7 +56,16 @@
                     <a href="auth" class="w3-bar-item w3-button">Login</a>
                 </div>
             </div>
-            <a href="http://www.google.com.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
+            <span class="w3-bar-item"><i class="fa fa-phone w3-text-teal w3-large"></i> 85 3252-5469</span>
+            <a href="https://www.google.com.br/search?q=digest%2Bcom.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search" target="_blank"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
+        </div>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+            <a href="team" class="w3-bar-item w3-button">Equipe</a>
+            <a href="products" class="w3-bar-item w3-button">Serviços</a>
+            <a href="insurance" class="w3-bar-item w3-button">Convênios</a>
+            <a href="#contact" class="w3-bar-item w3-button">Contato</a>
         </div>
     </div>
 
@@ -68,36 +73,20 @@
     <div class="w3-display-container w3-animate-opacity">
         
         <img src="/assets/images/gcanyon1.jpg" alt="Digest" style="width:100%;min-height:250px;max-height:600px;">
-            <div class="w3-container w3-display-topright w3-margin-bottom">    
+
+        <div class="w3-container w3-display-topright w3-display-bottomleft w3-margin-bottom">    
             <h1 style="font-size:4vw;padding-top: 40px;"><b>Digest</b></h1>
             <p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>
 
-            <!-- <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div> -->
-            <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
-            </div>
-
-            <div class="w3-container w3-display-bottomleft w3-margin-bottom">
-                <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-large w3-theme w3-hover-teal" title="Contato">Deseja atendimento?</button>
-            </div>
-
-    </div>
-
-        <!-- Modal -->
-    <div id="id01" class="w3-modal">
-        <div class="w3-modal-content w3-card-4 w3-animate-top">
-            <header class="w3-container w3-teal w3-display-container">
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-teal w3-display-topright"><i class="fa fa-remove"></i></span>
-                <h4>Olá! Seja bem vindo..</h4>
-                <h5>Espero que encontre o que precisa <i class="fa fa-smile-o"></i></h5>
-            </header>
-            <div class="w3-container">
-                <p>Podemos dar mais informações </p>
-                <p>Entre em contato <a class="w3-text-teal" href="#contact">aqui</a> e faremos o máximo para ajudar</p>
-            </div>
-            <footer class="w3-container w3-teal">
-                <p>Modal footer</p>
-            </footer>
+            <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
+            <!-- <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div> -->
         </div>
+
+        <div class="w3-container w3-display-bottomright w3-margin-bottom">
+            <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-large w3-theme w3-hover-teal" title="Contato">Deseja atendimento?</button> -->
+            <button class="w3-button w3-large w3-theme w3-hover-teal" title="Contato"><a href="#contact">Deseja atendimento?</a></button>
+        </div>
+
     </div>
 
     <div id="insuranceModal" class="w3-modal" onclick="document.getElementById('insuranceModal').style.display='none'">
@@ -306,9 +295,8 @@
 
                                 <!-- Footer -->
                                 <footer class="w3-container w3-padding-32 w3-theme-d1 w3-center">
-                                    <div>
                                         
-                                    </div>
+                                    
                                             <label>Compartilhe:</label>&nbsp;
                                             <a class="w3-button w3-large w3-teal" href="https://www.facebook.com/sharer/sharer.php?u=http://www.digest.com.br/static/catalog/z-ph.png&&amp;redirect_uri=https%3A%2F%2Fwww.facebook.com%2F" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" title="Facebook"><i class="fa fa-facebook"></i></a>
                                             &nbsp;
@@ -323,12 +311,11 @@
                                             <a class="w3-button w3-large w3-cyan" href="https://twitter.com/intent/tweet?url=http://www.digest.com.br/&amp;text=Estou+na+Digest:+Clínica de Gastroenterologia e Endoscopia &amp;hashtags=digestoficial" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
                                             <a class="w3-button w3-large w3-pink" href="https://www.instagram.com/digestoficial" target="_blank" rel="noopener" title="Instagram"><i class="fa fa-instagram"></i></a>
                                             <!-- <a class="w3-button w3-large w3-teal w3-hide-small" href="javascript:void(0)" title="Linkedin"><i class="fa fa-linkedin"></i></a> -->
-                                    <div>
-                                        &nbsp;
-                                        <p>Criado por <a href="http://www.digest.com.br" target="_blank">digest.com.br</a></p>
-                                    </div>
                                     
-                                    <div style="position:relative;bottom:100px;z-index:1;" class="w3-tooltip w3-right">
+                                        &nbsp;
+                                        <p style="padding-top: 20px;font-size: 0.7em;">Criado por <a href="http://www.digest.com.br" target="_blank">digest.com.br</a></p>
+                                    
+                                    <div style="position:relative;bottom:0px;z-index:1;" class="w3-tooltip w3-right">
                                         <span class="w3-text w3-padding w3-teal w3-hide-small">Acima</span>
                                         <a class="w3-button w3-theme" href="#myPage"><span class="w3-xlarge">
                                             <i class="fa fa-chevron-circle-up"></i></span></a>

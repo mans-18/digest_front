@@ -9,48 +9,78 @@
 <style>
 </style>
 </head>
-<body>
-  
-      <!-- Navbar / w3-top blocked the page to a fixed size, and h1 and p above do not appear-->
-      <<div class="w3-top" style="padding-top: 20px;padding-right: 80px;">
-        <div class="w3-bar w3-theme-d2 w3-left-align">
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right" style="padding-left: 10px;"></i>Logo</a>
-            <a href="team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Equipe</a>
-            <a href="products" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Serviços</a>
-            <span  onclick="document.getElementById('insuranceModal').style.display='block'"><a class="w3-bar-item w3-button w3-hide-small w3-hover-white">Convênios</a></span>
-            <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contato</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars" style="padding-left: 20px;"></i>
-            </a>
-            <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-button" title="Notifications">Saiba Mais <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-card-4 w3-bar-block">
-                    <span id="photoCap"><a href="capture" class="w3-bar-item w3-button">Foto</a></span>
-                    <a href="#" class="w3-bar-item w3-button">Videos Educativos</a>
-                    <a href="themes" class="w3-bar-item w3-button">Temas</a>
-                    <a href="auth" class="w3-bar-item w3-button">Login</a>
-                </div>
-            </div>
-            <a href="http://www.google.com.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
-        </div>
-    </div>
-    
-	<!-- Image Header -->
-  <div class="w3-display-container w3-animate-opacity">
-        
-    <img src="/assets/images/gcanyon1.jpg" alt="Digest" style="width:100%;min-height:250px;max-height:600px;">
-        <div class="w3-container w3-display-topright w3-margin-bottom">    
-        <h1 style="font-size:4vw;padding-top: 40px;"><b>Digest</b></h1>
-        <p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>
-        <!-- <iframe src="https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdigest.com.br&width=90&layout=button&action=like&size=small&share=false&height=65&appId" width="90" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe> -->
-        <div class="fb-like" data-href="http://digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
-        </div>
-        <div class="w3-container w3-display-bottomleft w3-margin-bottom">
-            <button class="w3-button w3-large w3-theme w3-hover-teal" title="Contato"><a href="#contact">Deseja atendimento?</a></button>
-        </div>
+<body id="myPage">
 
-</div>
+  <!-- curtir apenas -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v11.0" nonce="FOkzxjmO"></script>
+  <!-- curtir e compartilhar -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v11.0" nonce="3ed4F7Hd"></script>
+
+  <!-- <h1 class="center">Digest</h1> -->
+
+  <!-- Sidebar on click -->
+  <nav class="w3-sidebar w3-bar-block w3-white w3-card w3-animate-left w3-xxlarge" style="display:none;z-index:2" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-display-topright w3-text-teal">Close
+          <i class="fa fa-remove"></i>
+      </a>
+      <a href="#" class="w3-bar-item w3-button">Link 1</a>
+      <a href="#" class="w3-bar-item w3-button">Link 2</a>
+      <a href="#" class="w3-bar-item w3-button">Link 3</a>
+      <a href="#" class="w3-bar-item w3-button">Link 4</a>
+      <a href="#" class="w3-bar-item w3-button">Link 5</a>
+  </nav>
+  
+  <!-- Navbar / w3-top blocked the page to a fixed size, and h1 and p above do not appear-->
+  <div class="w3-top" style="padding-top: 20px;padding-right: 80px;">
+      <div class="w3-bar w3-theme-d2 w3-left-align">
+          <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-hover-white w3-theme-d2" href="javascript:void(0);" (click)="openNav()"><i class="fa fa-bars"></i></a>            <a href="#" class="w3-bar-item w3-button w3-teal"><i class="fa fa-home w3-margin-right" style="padding-left: 10px;"></i></a>
+          <a href="team" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Equipe</a>
+          <a href="products" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Serviços</a>
+          <span  onclick="document.getElementById('insuranceModal').style.display='block'"><a class="w3-bar-item w3-button w3-hide-small w3-hover-white">Convênios</a></span>
+          <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contato</a>
+
+          <div class="w3-dropdown-hover w3-hide-small">
+              <div class="w3-button" title="Notifications">Saiba Mais <i class="fa fa-caret-down"></i></div>
+              <div class="w3-dropdown-content w3-card-4 w3-bar-block">
+                  <span id="photoCap"><a href="capture" class="w3-bar-item w3-button">Foto</a></span>
+                  <a href="#" class="w3-bar-item w3-button">Videos Educativos</a>
+                  <a href="themes" class="w3-bar-item w3-button">Temas</a>
+                  <a href="auth" class="w3-bar-item w3-button">Login</a>
+              </div>
+          </div>
+          <a href="https://www.google.com.br/search?q=digest%2Bcom.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search" target="_blank"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
+      </div>
+
+      <!-- Navbar on small screens -->
+      <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium">
+          <a href="team" class="w3-bar-item w3-button">Equipe</a>
+          <a href="products" class="w3-bar-item w3-button">Serviços</a>
+          <a href="insurance" class="w3-bar-item w3-button">Convênios</a>
+          <a href="#contact" class="w3-bar-item w3-button">Contato</a>
+      </div>
+  </div>
+
+<!-- Image Header -->
+  <div class="w3-display-container w3-animate-opacity">
+      
+      <img src="/assets/images/gcanyon1.jpg" alt="Digest" style="width:100%;min-height:250px;max-height:600px;">
+
+      <div class="w3-container w3-display-topright w3-display-bottomleft w3-margin-bottom">    
+          <h1 style="font-size:4vw;padding-top: 40px;"><b>Digest</b></h1>
+          <p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>
+
+          <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
+          <!-- <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div> -->
+      </div>
+
+      <div class="w3-container w3-display-bottomright w3-margin-bottom">
+          <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-large w3-theme w3-hover-teal" title="Contato">Deseja atendimento?</button> -->
+          <button class="w3-button w3-large w3-theme w3-hover-teal" title="Contato"><a href="#contact">Deseja atendimento?</a></button>
+      </div>
+
+  </div>
 
 
        <!-- Modal -->
