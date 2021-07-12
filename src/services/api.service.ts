@@ -18,7 +18,8 @@ import { EmailValidator } from '@angular/forms';
 
 export class ApiService {
 
-  baseUrl = 'http://127.0.0.1:8000/';
+  //baseUrl = 'http://127.0.0.1:8000/';
+  baseUrl = 'digestback.herokuapp.com/'
   baseDigestUrl = `${this.baseUrl}api/persona/events/`; // TO BE DELETED
   baseEventUrl = `${this.baseUrl}api/persona/events`;
   headers = new HttpHeaders({
