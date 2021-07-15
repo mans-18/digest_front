@@ -19,13 +19,13 @@ import { EmailValidator } from '@angular/forms';
 export class ApiService {
 
   //baseUrl = 'http://127.0.0.1:8000/';
-  baseUrl = 'digestback.herokuapp.com/'
+  baseUrl = 'https://digestback.herokuapp.com/'
   baseDigestUrl = `${this.baseUrl}api/persona/events/`; // TO BE DELETED
   baseEventUrl = `${this.baseUrl}api/persona/events`;
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   })
-
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -56,6 +56,7 @@ export class ApiService {
   getEvents(): Observable<Event[]> {
     // this.messageService.add('ApiService: fetched events');
     // return of(events);
+    console.log(this.headers);
     return this.httpClient.get<Event[]>(this.baseEventUrl)
       .pipe(
         tap(_ => this.log('fetched events')),
@@ -173,6 +174,7 @@ export class ApiService {
     );
   }
 
+  // Headers ok???? No authorization key?
   updatePersona(id: number, name: string, mobile: number,
                 whatsapp: number, telephone: number, email: string,
                 street: string, complement: string, postalcode: string,

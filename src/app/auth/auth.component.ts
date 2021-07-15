@@ -44,7 +44,7 @@ export class AuthComponent implements OnInit {
 
 
   saveForm() {
-    console.log(document.cookie, 'authFormValue', this.authForm.value);
+    //console.log(document.cookie, 'authFormValue', this.authForm.value);
     if (!this.registerMode) {
       this.loginUser();
     } else {
