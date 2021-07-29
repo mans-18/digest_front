@@ -18,8 +18,9 @@ import { EmailValidator } from '@angular/forms';
 
 export class ApiService {
 
-  //baseUrl = 'http://127.0.0.1:8000/';
-  baseUrl = 'https://digestback.herokuapp.com/'
+  baseUrl = 'http://127.0.0.1:8000/';
+  // MUST include https://, otherwise the frontend will direct to a url "https://digest.com.br/digestback/heroku.com/auth"
+  //baseUrl = 'https://digestback.herokuapp.com/'
   baseDigestUrl = `${this.baseUrl}api/persona/events/`; // TO BE DELETED
   baseEventUrl = `${this.baseUrl}api/persona/events`;
   headers = new HttpHeaders({
@@ -240,7 +241,7 @@ export class ApiService {
   emailKollege(name: string) {
     // return this.httpClient.get(`${this.baseUrl}api/persona/email/`, {headers: this.getAuthHeaders()}).subscribe();
     const body = name //JSON.stringify({name});
-    alert("email sent!");
+    alert("email enviado!");
     return this.httpClient.post(`${this.baseUrl}api/persona/email/`, body, {headers: this.getAuthHeaders()});
   }
 
@@ -248,7 +249,7 @@ export class ApiService {
     // return this.httpClient.get(`${this.baseUrl}api/persona/email/`, {headers: this.getAuthHeaders()}).subscribe();
     const bodie = {'name':name, 'mobile': mobile, 'email': email, 'body':body}; //JSON.stringify({name});
     //console.log('body', bodie);
-    alert("email sent!");
+    alert("Obrigado pelo contato! Entraremos em contato pelo telefone ou email informado.");
     return this.httpClient.post(`${this.baseUrl}api/persona/emailserv/`, bodie, {headers: this.getAuthHeaders()});
   }
 

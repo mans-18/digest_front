@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   emailSendClient() {
     // Send an email from the client smtp. Needs an email account configured
     const name = this.emailForm.value.name;
+    const mobile = this.emailForm.value.mobile;
     const email = this.emailForm.value.email;
     const body = this.emailForm.value.body;
     const like = this.emailForm.value.like;
