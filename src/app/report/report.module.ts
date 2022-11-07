@@ -6,10 +6,12 @@ import { ReportComponent } from './report/report.component';
 import { ReportFormComponent } from './report-form/report-form.component';
 import { AngmatModule } from '../shared/angmat.module';
 import { AngutilsModule } from '../shared/angutils.module';
+import { ReportlistComponent } from './reportlist/reportlist.component';
 
 @NgModule({
   declarations: [
     ReportComponent,
+    ReportlistComponent,
     ReportFormComponent,
   ],
   imports: [
@@ -20,6 +22,7 @@ import { AngutilsModule } from '../shared/angutils.module';
   ],
   exports: [
     ReportComponent,
+    ReportlistComponent,
     ReportFormComponent,
   ]
 })

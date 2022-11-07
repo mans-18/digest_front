@@ -66,6 +66,34 @@ export class KollegeFormModalComponent implements OnInit {
       catch(err) {err}
     }
 
+    // TO implement update on the modal. Need to pass id
+    update(id) {
+      //this.dialogRef.close(this.form.value);
+      console.log(this.form.value);
+      //this.dialogRef.close(this.form.value);
+      try {
+        if (this.form.value.name == '') { throw alert('Por favor, informe o nome do médico!')};
+        if (this.form.value.dob == '') { throw alert('Por favor, informe o CRM do médico!')};
+        if (this.form.value.mobile == '') { throw alert('Por favor, informe o celular do médico!')};
+
+      this.apiService.updateKollege(
+      id,
+      this.form.value.name,
+      this.form.value.crm,
+      this.form.value.email).subscribe(
+        // Above is sufficient to write on the db. Below shall refresh yhe list
+        // (result: Event) => this.eventCreated.emit(result),
+        // error => console.log(error)
+        );
+      //close();
+      //location.reload();
+      console.log(this.form)
+      // this.router.navigate(['event-form'],);
+      // console.log('dob: ', this.form.value.dob);
+      }
+      catch(err) {err}
+    }
+
     onNoAction() {
         this.dialogRef.close();
     }

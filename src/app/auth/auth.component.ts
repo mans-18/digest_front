@@ -63,6 +63,7 @@ export class AuthComponent implements OnInit {
         // this.cookieService.set('mr-token', result.token, 159888,'','', false);
         this.cookieService.set('mr-token', result.token); //document.cookie,);
         this.cookieService.set('currentUser', this.authForm.value.username);
+        console.log('mrToken at loginUser on auth.comp:', this.cookieService.get('mr-token'));
         if (this.authForm.value.username == 'marina@dig.com') {
           this.router.navigate(['/assistant']);
         } else {

@@ -16,7 +16,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AssistantModule } from './assistant/assistant.module';
 import { HomeModule } from './home/home.module';
 
-
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'auth'}
 ];

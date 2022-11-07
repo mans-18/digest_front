@@ -1,0 +1,65 @@
+<!--  ######################### FORM ########################## -->
+<form id="reportEDA" action="saveForm()">
+    <div class="select-editable">
+        <!-- <select onchange="this.nextElementSibling.value=this.value"> -->
+        <select name="env1" onchange="textFar1.value=this.value">
+            <option></option>
+            <option value="{{farNor}}">Normal</option>
+            <option>Zenker</option>
+            <option>Difícil</option> 
+        </select>
+        <input id="textFar" type="text" name="format" value=""/>
+        <textarea id="textFar1" form="reportEDA"
+                        placeholder="Faringe"
+                        >Passagem fácil e sem traumas pelo esfíncter superior do esôfago, sob visão direta.</textarea>
+    </div>
+    <div class="select-editable">
+        <select name="env2" onchange="textEso.value=this.value">
+            <option></option>
+            <option value="{{esoNor}}">Normal</option>
+            <option>Esofagite A</option>
+            <option>HH</option> 
+        </select>
+        <input id="textEso" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+        <select name="env3" onchange="textStom.value=this.value">
+            <option></option>
+            <option value="{{stomNor}}">Normal</option>
+            <option>Pangastrite</option>
+            <option>Úlcera</option> 
+        </select>
+        <input id="textStom" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+    <select name="env4" onchange="textDuo.value=this.value">
+            <option></option>
+            <option value="{{duoNor}}">Normal</option>
+            <option>Duodenite</option>
+            <option>Úlcera</option> 
+        </select>
+        <input id="textDuo" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+        <select name="env5" onchange="textConc1.value=this.value">
+            <option></option>
+            <option value="{{concNor}}">Normal</option>
+            <option>Pangastrite enantematosa leve</option>
+            <option>Esofagite</option> 
+        </select>
+        <input id="textConc1" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+        <select name="env6" onchange="textConc2.value=this.value">
+            <option></option>
+            <option value="{{concNor}}">Normal</option>
+            <option>Zenker</option>
+            <option>Difícil</option> 
+        </select>
+        <input id="textConc2" type="text" name="format" value=""/>
+    </div>
+        <input type="button" (click)="saveForm()" value="Salvar">
+      
+</form>
+
+

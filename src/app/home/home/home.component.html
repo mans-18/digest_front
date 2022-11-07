@@ -56,7 +56,7 @@
                     <a href="auth" class="w3-bar-item w3-button">Login</a>
                 </div>
             </div>
-            <span class="w3-bar-item"><i class="fa fa-phone w3-text-teal w3-large"></i> 85 3252-5469</span>
+            <span class="w3-bar-item"><i class="fa fa-phone w3-text-teal w3-large"></i> 85 3252-5469 Fortaleza-CE</span>
             <a href="https://www.google.com.br/search?q=digest%2Bcom.br" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-teal" title="Search" target="_blank"><i class="fa fa-search" style="padding-right: 40px;"></i></a>
         </div>
 
@@ -76,7 +76,8 @@
 
         <div class="w3-container w3-display-topright w3-display-bottomleft w3-margin-bottom">    
             <h1 style="font-size:4vw;padding-top: 40px;"><b>Digest</b></h1>
-            <p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>
+            <p style="font-size:2vw">"Consultas e exames do aparelho digestivo em Fortaleza"</p>
+            <!--<p style="font-size:2vw">"Diagnóstico, tratamento & prevenção"</p>-->
 
             <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
             <!-- <div class="fb-like" data-href="http://www.digest.com.br" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div> -->
@@ -268,19 +269,19 @@
 
                                         <form id="emailForm" class="w3-container w3-card-4 w3-padding-16 w3-white" [formGroup]="emailForm" (ngSubmit)="emailSendServer()" target="_blank">
                                             <div class="w3-section">
-                                                <label>Nome</label>
+                                                <label>Seu nome:</label>
                                                 <input id="ename" class="w3-input" type="text" formControlName="name" required>
                                                     </div>
                                             <div class="w3-section">
-                                                <label>Telefone</label>
+                                                <label>Seu celular ou telefone:</label>
                                                 <input class="w3-input" type="text" formControlName="mobile" required>
                                                     </div>
                                             <div class="w3-section">
-                                                <label>Email</label>
+                                                <label>Seu email:</label>
                                                 <input class="w3-input" type="email" formControlName="email" required>
                                                     </div>
                                             <div class="w3-section">
-                                                <label>Mensagem</label>
+                                                <label>Deseja uma consulta? Um exame? Como podemos ajudar?</label>
                                                 <input id="ebody" class="w3-input" type="text" formControlName="body" required>
                                                     </div>
                                             <input class="w3-check" type="checkbox" checked name="like">
@@ -322,5 +323,32 @@
                                     </div>
                                 </footer>
 
+<!-- Analytics -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<!--
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+-->
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<!--
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyAookTLWVjfkDY0YIzMAB94FiTK7IVyAZE",
+    authDomain: "digest-8d0a6.firebaseapp.com",
+    projectId: "digest-8d0a6",
+    storageBucket: "digest-8d0a6.appspot.com",
+    messagingSenderId: "521221306131",
+    appId: "1:521221306131:web:f32d3b813a7f81cf55cce6",
+    measurementId: "G-D2WKXG4L1N"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+-->
 </body>
 </html>

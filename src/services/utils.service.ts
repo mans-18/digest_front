@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { AfterViewInit, Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from './api.service';
 import { Event } from 'src/app/models/event';
@@ -7,7 +7,7 @@ import { Event } from 'src/app/models/event';
   providedIn: 'root'
 })
 
-export class UtilsService {
+export class UtilsService implements AfterViewInit {
 
   eventss: Event[] = [];
   dataSource: MatTableDataSource<Event>;
@@ -16,10 +16,10 @@ export class UtilsService {
     private apiService: ApiService,
   ) { }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.apiService.getEvents().subscribe(
       event => { this.eventss = event.filter(ev => ev.color !== 'FFFFFF'),
-      this.dataSource = new MatTableDataSource(this.eventss)
+      this.dataSource = new MatTableDataSource(this.eventss);
       });
   }
 

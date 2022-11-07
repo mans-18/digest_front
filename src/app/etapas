@@ -43,6 +43,16 @@ Doesnt toggles deleted or not but made a dialog with deleted. Better! User canno
 Float menu visible only if mr-token;
 Needs to refresh the page if the float menu is kept on the app;
 
+15/8/21
+ng add @angular/localize
+
+at angular.json:
+"i18n": {
+        "sourceLocale": "pt",
+        "locales": {
+          "br": "src/locale/messages.br.xlf"
+        }
+      },
 
 CSS for main site: home, insurance, product, team
 

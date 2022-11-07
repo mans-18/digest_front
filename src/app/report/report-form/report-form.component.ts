@@ -57,7 +57,12 @@ cardImageBase64: string;
   /* ### Angular 2 how to make child component wait for async data to be ready 
     https://stackoverflow.com/questions/41389124/angular-2-how-to-make-child-component-wait-for-async-data-to-be-ready ### */
   private _events = new BehaviorSubject<Event[]>([]);
-  @Input() set events(value: Event[]) { this._events.next(value)};
+  @Input() set events(value: Event[]) { this._events.next(value)}; 
+ 
+  eventreports: EventReport[];
+  eventreportsObs = new Observable<EventReport[]>(observer => {observer.next(this.getEventReports());observer.next(this.eventreports)});
+
+  nowVarDeclDomain = new Date().getMilliseconds();
 
   private searchTerms = new Subject<string>();
   faPlus = faPlus;
@@ -81,6 +86,21 @@ cardImageBase64: string;
     });*/
   }
   
+  // Select to input
+  farNor = 'FARaadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnxaa \
+            dsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx aadsdds \
+            dhdhddbd jdjdj hdh cc ccdx xxxjxnx aadsdds dhdhddbd \
+            jdjdj hdh cc ccdx xxxjxnxaadsdds dhdhddbd jdjdj hdh cc \
+            ccdx xxxjxnx aadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx \
+            aadsdds dhdhddbd FAR jdjdj hdh cc ccdx xxxjxnx aadsdds dhdhddbd \
+            djdj hdh cc ccdx xxxjxnx aadsdds dhdhddbd jdjdj hdh cc ccdx \
+            xxxjxnx aadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx'
+  esoNor = 'ESOaadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx'
+  stomNor = 'STOMaadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx'
+  duoNor = 'DUOaadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx'
+  concNor = 'CONCaadsdds dhdhddbd jdjdj hdh cc ccdx xxxjxnx'
+
+  farDif = 'Passagem pelo esfíncter superior do esôfago, sob visão direta, com dificuldade.'
     
     
   constructor(
@@ -155,7 +175,34 @@ cardImageBase64: string;
     //console.log('_events', this._events);
 
     setTimeout(() => this.patchForm(), 500);
+
+    //this.apiService.getEventReports().subscribe(data => this.eventreports = data)
+
+    // If wait a little, undefined is out
+    const XXX = setTimeout(() => this.eventreports.keys, 2000)
+
+    console.log('varDeclDom: ', this.nowVarDeclDomain, XXX);
+    console.log('evReports ini:', setTimeout(() => this.eventreports, 0), setTimeout(() => this.getEventReports(),0), new Date().getMilliseconds(), this.getNowTime(), setTimeout(() => this.getNowTime(),0));
     
+    //Promise do not fix the undefined problem
+    let promise = new Promise((resolve, reject) => {
+      resolve(this.getEventReports());
+      reject( err => new Error(err));
+    });
+    promise.then(value => {
+      console.log('Value of promise: ', value);
+    });
+
+    //Observables (set above, just below eventreports) do not fix the undefined problem
+    if (this.eventreportsObs) {
+      //this.eventreportsObs.subscribe(val => this.eventreports = val);
+      console.log('eventreportsObs is on');
+      this.eventreportsObs.subscribe(val => console.log('evReports ini wth IF:', this.eventreports?.length, val));
+    } else { console.log('this.eventreports N/A') 
+    }
+
+    //Instead of the above, just fix the undefined issue with a *ngIf clause on the html
+
   }
 
 
@@ -164,12 +211,17 @@ cardImageBase64: string;
     console.log('this.events onChange', this.events, this.route.snapshot.paramMap.get('id'));
     setTimeout(() => this.patchForm(), 1000);
   }
-
+*/
   ngAfterViewInit(): void {
     setTimeout(() => this.patchForm(), 1000);
-    console.log('idCom', this.idComing);
+    //console.log('idCom', this.idComing);
+    this.getEventReports();
+    console.log('evReports after:', this.eventreports, new Date().getMilliseconds());
   }
-*/
+ // If I call this function onInit or onAfter, get undefined if NO RETURN
+ getNowTime() {
+   return new Date().getMilliseconds();
+}
 
 // #################################################################################################### //
   // If does now: keeping both templates on the same page on event.component.html
@@ -183,7 +235,7 @@ cardImageBase64: string;
     this.id = id;
     let ev: Event[] = [];
     this._events.subscribe(e => ev = e)
-    this.formReport.patchValue({ event: id, assistant: ev[0].title});
+   // this.formReport.patchValue({ event: id, assistant: ev[0].title});
     // Can subscribe to the subject as above or simply get the value directly from it:
     //this.formReport.patchValue({ event: id, assistant: this._events.value[0].title });
     //this.formIm.patchValue({event: id});
@@ -237,6 +289,12 @@ cardImageBase64: string;
     console.log('personaNameInsideGet: ', this.personas);
   }
 
+  getEventReports(): any {
+    this.apiService.getEventReports()
+      .subscribe(data => this.eventreports = data);
+  }
+  
+
   saveForm() {
     console.log('ID at formRepo', this.id);
     console.log('into the if clause', this.formReport.value.event);
@@ -252,7 +310,8 @@ cardImageBase64: string;
     this.apiService.createEventReport(
       //this.id,
     //  this.formReport.value.reportUUID,
-      String(this.blobToForm), this.formReport.value.im2, this.formReport.value.im3, this.formReport.value.im4,
+      //String(this.blobToForm),
+      this.formReport.value.im1, this.formReport.value.im2, this.formReport.value.im3, this.formReport.value.im4,
       this.formReport.value.im5, this.formReport.value.im6, this.formReport.value.im7,
       this.formReport.value.im8, this.formReport.value.im9, this.formReport.value.im10,
       this.formReport.value.drugs, this.formReport.value.anest, this.formReport.value.assistant, this.formReport.value.equipment,
@@ -263,7 +322,7 @@ cardImageBase64: string;
       this.formReport.value.conc4, this.formReport.value.conc5, this.formReport.value.conc6,
       this.formReport.value.complications,
       this.formReport.value.event).subscribe(
-        (result: EventReport) => { console.log('into create EventReport subscribe')
+        (result: EventReport) => { console.log('into create EventReport subscribe', this.formReport.value.phar)
           // This line only updates the view. Commenting it keeps updateDigest but needs manual refreshing.
         //   this.eventUpdated.emit(result);
         },

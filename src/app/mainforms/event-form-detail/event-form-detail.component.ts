@@ -5,7 +5,7 @@ import { Persona } from '../../models/persona';
 import { Kollege } from 'src/app/models/kollege';
 
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { Observable } from 'rxjs';
@@ -85,16 +85,16 @@ export class EventFormDetailComponent implements OnInit {
   this.day = value.start.toLocaleString().split('T')[0].split('-')[2];
   this.month = value.start.toLocaleString().split('T')[0].split('-')[1];
   this.year = value.start.toLocaleString().split('T')[0].split('-')[0];
-  let date = new Date(Date.parse(this.day+'/'+this.month+'/'+this.year));
-  let datee = this.year + '-' + this.month + '-' + this.day;
+  const date = new Date(Date.parse(this.day + '/' + this.month + '/' + this.year));
+  const datee = this.year + '-' + this.month + '-' + this.day;
   this.id = value.id;
   
   this.eventFormDetail = new FormGroup({
     title: new FormControl(value.title),
     partner: new FormControl(value.partner),
-    //startDate: new FormControl(date.toISOString().substring(0, 10)), //doesnt get into the input as date, but it does as a str
-    startDate: new FormControl(datee), //doesnt get into the input as date, but it does as a str
-    startTime: new FormControl(value.start.toLocaleString().split('T')[1].slice(0,5)),
+    // startDate: new FormControl(date.toISOString().substring(0, 10)), //doesnt get into the input as date, but it does as a str
+    startDate: new FormControl(datee), // doesnt get into the input as date, but it does as a str
+    startTime: new FormControl(value.start.toLocaleString().split('T')[1].slice(0, 5)),
     color: new FormControl(value.color),
     status: new FormControl(value.status),
     insurance: new FormControl(value.insurance),
@@ -106,7 +106,7 @@ export class EventFormDetailComponent implements OnInit {
     persona: new FormControl(value.persona),
     kollege: new FormControl(value.kollege),
   });
-  console.log('event', value.id, this.eventFormDetail.get('title')); // event is undefined
+  // console.log('event', value.id, this.eventFormDetail.get('title')); // event is undefined
 }
 
   // ngAfterContentChecked(): void {
@@ -114,17 +114,17 @@ export class EventFormDetailComponent implements OnInit {
   //   }
 
     // Called once after view has initialized
-    //Commented because of error undefined name: 82, 83, 210-213, 223-226
-  ngAfterViewInit(): void {
-    //this.eventFormDetail.patchValue({persona: this.getActualPersona()});
-    //this.eventFormDetail.patchValue({kollege: this.getActualKollege()});
+    // Commented because of error undefined name: 82, 83, 210-213, 223-226
+  // ngAfterViewInit(): void {
+    // this.eventFormDetail.patchValue({persona: this.getActualPersona()});
+    // this.eventFormDetail.patchValue({kollege: this.getActualKollege()});
   // alert('6. after view init called');
   // console.log('actual kol: ', this.getActualKollege());
   // this.getPersonas();
   // this.getEvents();
   // this.getKollegen();
 
-  }
+  // }
 
   //   ngAfterViewChecked(): void {
   //   alert('7. after view init checked');
@@ -163,16 +163,16 @@ export class EventFormDetailComponent implements OnInit {
     // this.getActualKollege();
     // Testing get params from calendar in the comeing url
     this.clickInfo$ = this.route.paramMap;
-    console.log('clickInfo: ', this.clickInfo$);
-    console.log('eventformdetail: ', this.eventFormDetail);
+    // console.log('clickInfo: ', this.clickInfo$);
+    // console.log('eventformdetail: ', this.eventFormDetail);
     // console.log('actual pers: ', this.getActualPersona());
-    console.log('actual kol: ', this.getActualKollege());
+    // console.log('actual kol: ', this.getActualKollege());
   }
 
-  // Getters fot use in the template - just for reference. No use actually
-  get persona() { return this.eventFormDetail.get('persona')}
+  // Getters fot use in the template - just for reference. No use actually. Typedef suggested by lint (ng lint digest-rater)
+  get persona(): AbstractControl { return this.eventFormDetail.get('persona');}
 
-  get kollege() { return this.eventFormDetail.get('kollege')}
+  get kollege(): AbstractControl { return this.eventFormDetail.get('kollege');}
 
 
   // get pers_id() {
@@ -288,12 +288,12 @@ export class EventFormDetailComponent implements OnInit {
     let persona_name = this.eventFormDetail.value.persona;
     
     let persona_id = persona_name.id;  //undef
-    // console.log('id per: ', persona_id);
+    //console.log('id per: ', persona_id);
 
     let kollege_name = this.eventFormDetail.value.kollege;
-    // console.log('name kol: ', kollege_name);
+    //console.log('name kol: ', kollege_name);
     let kollege_id = kollege_name.id;  //undef
-    // console.log('id kol: ', kollege_id);
+    //console.log('id kol: ', kollege_id);
     
     let dayy = this.eventFormDetail.value.startDate//.split('/')[0];
     let time = this.eventFormDetail.value.startTime;
@@ -305,9 +305,9 @@ export class EventFormDetailComponent implements OnInit {
     let recoposeStartNumber = Date.parse(recoposeStartStr);
     let recoposeStart = new Date(recoposeStartNumber);
 
-    console.log('start1: ', this.eventFormDetail.value.startDate);
-    console.log('start2: ', this.eventFormDetail.value.startDate.split('-'));
-    console.log('start3: ', recoposeStartStr, recoposeStart);
+    //console.log('start1: ', this.eventFormDetail.value.startDate);
+    //console.log('start2: ', this.eventFormDetail.value.startDate.split('-'));
+    //console.log('start3: ', recoposeStartStr, recoposeStart);
 
     try {
       let stEx = /\b20/g;
@@ -346,7 +346,10 @@ export class EventFormDetailComponent implements OnInit {
       // The alert below also allowed the list on 'events' update! No need to manually refresh now.
       //alert('Event updated');
       // location.reload();
-      this.router.navigate(['events'],);
+      if (this.router) {
+        this.router.navigate(['events'],);
+      }
+      //this.router.navigate(['events'],);
     } else {
       // TOUCHES THE DB
       this.apiService.createEvent(
@@ -370,6 +373,7 @@ export class EventFormDetailComponent implements OnInit {
         alert('Event created');
         // location.reload();
         this.router.navigate(['events'],);
+        //location.reload();
       }
     }
     catch(err) {err}

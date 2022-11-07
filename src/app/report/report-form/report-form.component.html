@@ -1,36 +1,8 @@
-<!-- <div>
-    <mat-dialog-content [formGroup]="formReport">
-        <input matInput
-            readonly
-            placeholder="ID"
-            formControlName="event">
-        <mat-form-field appearance="fill" style="width: 25%">
-            <input cdkDropList matInput
-            placeholder="im1"
-            formControlName="esop">
-        </mat-form-field>
-    </mat-dialog-content>
-
-    <mat-dialog-actions>
-        <button class="mat-raised-button"
-                (click)="close()">
-            Clear
-        </button>
-        <button class="mat-raised-button mat-primary"
-                (click)="saveForm()">
-            Save
-        </button>
-        <mat-card class="img-card">
-            <mat-card-header>
-                <img mat-card-image src="./../assets/images/logo_circle.png">
-            </mat-card-header>
-        </mat-card>
-    </mat-dialog-actions>
-    
-</div> -->
-
-<!--  ######################### FORM ########################## -->
-
+<span *ngIf='eventreports'>
+<!-- Do note what is this. Gives an error cant read undefined conc1
+    <p>ev reports: {{eventreports[26].conc1}}//{{eventreports.length}}</p>
+-->
+</span>
 <span *ngFor="let ev of events">
     <span *ngIf="this.id == ev.id">
         <span *ngFor="let per of personas">
@@ -51,7 +23,7 @@
         <!-- <mat-form-field> -->
             <input matInput
             readonly
-            hidden
+            #hidden
             placeholder="ID"
             formControlName="event">
         <!-- </mat-form-field> -->
@@ -62,10 +34,10 @@
                 placeholder="Medicamentos"
                 formControlName="drugs">
                 <mat-option value="null">--</mat-option>
-                <mat-option value="base">lidocaína, dimeticona, fentanila, midazolam</mat-option>
-                <mat-option value="propofol">lidocaína, dimeticona, fentanila, midazolam, propofol</mat-option>    
-                <mat-option value="none">lidocaína, dimeticona</mat-option>
-                <mat-option value="other">outro</mat-option>
+                <mat-option value="lidocaína, dimeticona, fentanila, midazolam">Básico</mat-option>
+                <mat-option value="lidocaína, dimeticona, fentanila, midazolam, propofol">Propofol</mat-option>    
+                <mat-option value="lidocaína, dimeticona">Tópico</mat-option>
+                <mat-option value="other">Outro</mat-option>
                 </mat-select>
             </mat-form-field>&nbsp;&nbsp;
           
@@ -86,15 +58,27 @@
 
             <tr>
                 <td>
+                    <select name="env" onchange="textFar.value=this.value">
+                        <option></option>
+                        <option value="{{farNor}}">Normal</option>
+                        <option value="Divertículo de Zenker">Zenker</option>
+                        <option value="{{farDif}}">Difícil</option> 
+                    </select>
                     <mat-form-field cdkDropList appearance="fill" style="width: 100%">
-                        <textarea matInput
+                        <textarea id="textFar" matInput
                         placeholder="Faringe"
                         formControlName="phar">Passagem fácil e sem traumas pelo esfíncter superior do esôfago, sob visão direta.</textarea>
                     </mat-form-field>
                 </td>
                 <td>
+                    <select name="env" onchange="textStom.value=this.value">
+                        <option></option>
+                        <option value="{{stomNor}}">Normal</option>
+                        <option value="Pangastrite enantematosa leve">Pangastrite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field appearance="fill" style="width: 100%">
-                        <textarea matInput
+                        <textarea id="textStom" matInput
                         placeholder="Estômago"
                         formControlName="stom"></textarea>
                     </mat-form-field>
@@ -104,15 +88,27 @@
 
             <tr>
                 <td>
+                    <select name="env" onchange="textEso.value=this.value">
+                        <option></option>
+                        <option value="{{esoNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field appearance="fill" style="width: 100%">
-                        <textarea matInput
+                        <textarea id="textEso" matInput
                         placeholder="Esôfago"
                         formControlName="esop"></textarea>
                     </mat-form-field>
                 </td>
                 <td>
+                    <select name="env" onchange="textDuo.value=this.value">
+                        <option></option>
+                        <option value="{{duoNor}}">Normal</option>
+                        <option value="Duodenite enantêmato-erosiva leve">Duodenite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field appearance="fill" style="width: 100%">
-                        <textarea matInput
+                        <textarea id="textDuo" matInput
                         placeholder="Duodeno"
                         formControlName="duod"></textarea>
                     </mat-form-field>
@@ -123,53 +119,91 @@
         </table>
 
         <table style="width: 100%">
-            <tr>
+           <tr> 
                 <td style="padding-left: 5px;">
+                    <select name="env" onchange="textConc1.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field style="width: 100%">
-                        <input matInput
+                        <textarea id="textConc1" matInput
                         placeholder="Conclusão1"
-                        formControlName="conc1">
+                        formControlName="conc1"></textarea>
                     </mat-form-field>
                 </td>
                 <td style="padding-left: 5px;">
+                    <select name="env" onchange="textConc4.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field style="width: 100%">
-                        <input matInput
-                        placeholder="Conclusão2"
-                        formControlName="conc2">
-                    </mat-form-field>
-                </td>
-            </tr>
-
-            <tr>
-                <td style="padding-left: 5px;"> 
-                    <mat-form-field style="width: 100%">
-                        <input matInput
-                        placeholder="Conclusão3"
-                        formControlName="conc3">
-                    </mat-form-field>
-                </td>
-                <td style="padding-left: 5px;">
-                    <mat-form-field style="width: 100%">
-                        <input matInput
+                    <textarea id="textConc4" matInput
                         placeholder="Conclusão4"
-                        formControlName="conc4">
+                        formControlName="conc4"></textarea>
                     </mat-form-field>
                 </td>
             </tr>
 
             <tr>
                 <td style="padding-left: 5px;">
+                    <select name="env" onchange="textConc2.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field style="width: 100%">
-                        <input matInput
-                        placeholder="Conclusão5"
-                        formControlName="conc5">
+                        <textarea id="textConc2" matInput
+                        placeholder="Conclusão2"
+                        formControlName="conc2"></textarea>
+
                     </mat-form-field>
                 </td>
                 <td style="padding-left: 5px;">
+                    <select name="env" onchange="textConc5.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
                     <mat-form-field style="width: 100%">
-                        <input matInput
+                    <textarea id="textConc5" matInput
+                        placeholder="Conclusão5"
+                        formControlName="conc5"></textarea>
+
+                    </mat-form-field>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-left: 5px;">
+                    <select name="env" onchange="textConc3.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                    <textarea id="textConc3" matInput
+                        placeholder="Conclusão3"
+                        formControlName="conc3"></textarea>
+                    </mat-form-field>
+                </td>
+                <td style="padding-left: 5px;">
+                    <select name="env" onchange="textConc6.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                    <textarea id="textConc6" matInput
                         placeholder="Conclusão6"
-                        formControlName="conc6">
+                        formControlName="conc6"></textarea>
                     </mat-form-field>
                 </td>
             </tr>
@@ -207,3 +241,281 @@
     
     </mat-dialog-actions>
 </div>
+
+
+
+<!-- <div>
+    <mat-dialog-content [formGroup]="formReport">
+        <input matInput
+            readonly
+            placeholder="ID"
+            formControlName="event">
+        <mat-form-field appearance="fill" style="width: 25%">
+            <input cdkDropList matInput
+            placeholder="im1"
+            formControlName="esop">
+        </mat-form-field>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="mat-raised-button"
+                (click)="close()">
+            Clear
+        </button>
+        <button class="mat-raised-button mat-primary"
+                (click)="saveForm()">
+            Save
+        </button>
+        <mat-card class="img-card">
+            <mat-card-header>
+                <img mat-card-image src="./../assets/images/logo_circle.png">
+            </mat-card-header>
+        </mat-card>
+    </mat-dialog-actions>
+    
+</div> -->
+
+<!--  ######################### FORM ########################## -->
+<!--
+<form id="reportEDA" action="saveForm()">
+    <div class="select-editable">
+         ###### <select onchange="this.nextElementSibling.value=this.value"> 
+        <select name="env1" onchange="textFar1.value=this.value">
+            <option></option>
+            <option value="{{farNor}}">Normal</option>
+            <option>Zenker</option>
+            <option>Difícil</option> 
+        </select>
+        <input id="textFar" type="text" name="format" value=""/>
+        <textarea id="textFar1" form="reportEDA"
+                        placeholder="Faringe"
+                        >Passagem fácil e sem traumas pelo esfíncter superior do esôfago, sob visão direta.</textarea>
+    </div>
+    <div class="select-editable">
+        <select name="env2" onchange="textEso.value=this.value">
+            <option></option>
+            <option value="{{esoNor}}">Normal</option>
+            <option>Esofagite A</option>
+            <option>HH</option> 
+        </select>
+        <input id="textEso" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+        <select name="env3" onchange="textStom.value=this.value">
+            <option></option>
+            <option value="{{stomNor}}">Normal</option>
+            <option>Pangastrite</option>
+            <option>Úlcera</option> 
+        </select>
+        <input id="textStom" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+    <select name="env4" onchange="textDuo.value=this.value">
+            <option></option>
+            <option value="{{duoNor}}">Normal</option>
+            <option>Duodenite</option>
+            <option>Úlcera</option> 
+        </select>
+        <input id="textDuo" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+        <select name="env5" onchange="textConc1.value=this.value">
+            <option></option>
+            <option value="{{concNor}}">Normal</option>
+            <option>Pangastrite enantematosa leve</option>
+            <option>Esofagite</option> 
+        </select>
+        <input id="textConc1" type="text" name="format" value=""/>
+    </div>
+    <div class="select-editable">
+        <select name="env6" onchange="textConc2.value=this.value">
+            <option></option>
+            <option value="{{concNor}}">Normal</option>
+            <option>Zenker</option>
+            <option>Difícil</option> 
+        </select>
+        <input id="textConc2" type="text" name="format" value=""/>
+    </div>
+        <input type="button" (click)="saveForm()" value="Salvar">
+      
+</form>
+-->
+
+
+
+
+          <!-- NO TABLE FORMAT -->
+                    <!-- <select name="env" onchange="textFar.value=this.value">
+                        <option></option>
+                        <option value="{{farNor}}">Normal</option>
+                        <option value="Divertículo de Zenker">Zenker</option>
+                        <option value="{{farDif}}">Difícil</option> 
+                    </select>
+                    <mat-form-field cdkDropList appearance="fill" style="width: 100%">
+                        <input id="textFar" matInput
+                        placeholder="Faringe"
+                        formControlName="phar">Passagem fácil e sem traumas pelo esfíncter superior do esôfago, sob visão direta.
+                    </mat-form-field>
+       
+                    <select name="env" onchange="textStom.value=this.value">
+                        <option></option>
+                        <option value="{{stomNor}}">Normal</option>
+                        <option value="Pangastrite enantematosa leve">Pangastrite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <textarea id="textStom" matInput
+                        placeholder="Estômago"
+                        formControlName="stom"></textarea>
+                    </mat-form-field>
+          
+                    <select name="env" onchange="textEso.value=this.value">
+                        <option></option>
+                        <option value="{{esoNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <textarea id="textEso" matInput
+                        placeholder="Esôfago"
+                        formControlName="esop"></textarea>
+                    </mat-form-field>
+             
+                    <select name="env" onchange="textDuo.value=this.value">
+                        <option></option>
+                        <option value="{{duoNor}}">Normal</option>
+                        <option value="Duodenite enantêmato-erosiva leve">Duodenite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field appearance="fill" style="width: 100%">
+                        <textarea id="textDuo" matInput
+                        placeholder="Duodeno"
+                        formControlName="duod"></textarea>
+                    </mat-form-field> -->
+        
+
+        <!-- <table style="width: 100%">
+            <tr>
+            <td>
+            <label>Conclusão 1 </label>
+            <select name="env" onchange="textConc1.value=this.value">
+                <option></option>
+                <option value="{{concNor}}">Normal</option>
+                <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                <option>Úlcera</option> 
+            </select>&nbsp;
+            <label>Conclusão 2 </label>
+            <select name="env" onchange="textConc2.value=this.value">
+                <option></option>
+                <option value="{{concNor}}">Normal</option>
+                <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                <option>Úlcera</option> 
+            </select>&nbsp;
+            <label>Conclusão 3 </label>
+            <select name="env" onchange="textConc3.value=this.value">
+                <option></option>
+                <option value="{{concNor}}">Normal</option>
+                <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                <option>Úlcera</option> 
+            </select>
+            </td>
+            <td>
+            <label>Conclusão 4 </label>
+            <select name="env" onchange="textConc4.value=this.value">
+                <option></option>
+                <option value="{{concNor}}">Normal</option>
+                <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                <option>Úlcera</option> 
+            </select>&nbsp;
+            <label>Conclusão 5 </label>
+            <select name="env" onchange="textConc5.value=this.value">
+                <option></option>
+                <option value="{{concNor}}">Normal</option>
+                <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                <option>Úlcera</option> 
+            </select>&nbsp;
+            <label>Conclusão 6 </label>
+            <select name="env" onchange="textConc6.value=this.value">
+                <option></option>
+                <option value="{{concNor}}">Normal</option>
+                <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                <option>Úlcera</option> 
+            </select>
+            </td>
+-->
+
+
+        <!-- NO TABLE FORMAT -->
+                    <!-- <select name="env1" onchange="textConc1.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                        <textarea id="textConc1" matInput
+                        value="env1.value"
+                        placeholder="Conclusão1"
+                        formControlName="conc1"></textarea>
+                    </mat-form-field>
+      
+                    <select name="env" onchange="textConc4.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                    <textarea id="textConc4" matInput
+                        placeholder="Conclusão4"
+                        formControlName="conc4"></textarea>
+                    </mat-form-field>
+           
+                    <select name="env" onchange="textConc2.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                        <textarea id="textConc2" matInput
+                        placeholder="Conclusão2"
+                        formControlName="conc2"></textarea>
+                    </mat-form-field>
+       
+                    <select name="env" onchange="textConc5.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                    <textarea id="textConc5" matInput
+                        placeholder="Conclusão5"
+                        formControlName="conc5"></textarea>
+                    </mat-form-field>
+     
+                    <select name="env" onchange="textConc3.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                    <textarea id="textConc3" matInput
+                        placeholder="Conclusão3"
+                        formControlName="conc3"></textarea>
+                    </mat-form-field>
+   
+                    <select name="env" onchange="textConc6.value=this.value">
+                        <option></option>
+                        <option value="{{concNor}}">Normal</option>
+                        <option value="Esofagite de refluxo grau A de Los Angeles">Esofagite</option>
+                        <option>Úlcera</option> 
+                    </select>
+                    <mat-form-field style="width: 100%">
+                    <textarea id="textConc6" matInput
+                        placeholder="Conclusão6"
+                        formControlName="conc6"></textarea>
+                    </mat-form-field>
+              -->

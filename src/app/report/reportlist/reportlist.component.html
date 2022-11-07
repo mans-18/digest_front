@@ -1,0 +1,214 @@
+<!-- <div id="ec" #ec>
+    <button mat-button (click)="openDialogx('Novo',{})" mat-flat-button color="primary">Novo</button>
+    <div style="margin-left: 10px;">
+      <mat-form-field *ngFor="let filter of filterSelectObj" style="padding-left: 0px;padding-right: 10px;padding-top: 40px;">
+        <mat-label>{{filter.name}}</mat-label>
+        <select matNativeControl name="{{filter.columnProp}}" [(ngModel)]="filter.modelValue"
+          (change)="filterChange(filter,$event)">
+          <option value="">-- Select {{filter.name}} --</option>
+          <option [value]="item" *ngFor="let item of filter.options">{{item}}</option>
+        </select>
+      </mat-form-field>
+      &nbsp;
+      <button mat-flat-button color="warn" (click)="resetFilters()">Reset</button>
+      &nbsp;
+    </div>
+    
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="utilsService.dataSource" #evtable matSort>
+        
+        <ng-container matColumnDef="start">
+          <span>
+          <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+          <span *ngFor="let ev of eventss; let i = index">
+          <td class="col-center" mat-cell *matCellDef="let ev">
+            
+              <a *ngIf="i == 0" routerLink="/event-form-detail/{{ev.id}}">{{ev.start | date: 'd/M/yy, h:mm a'}}</a>
+          
+          </td>
+        </span>
+        </span>
+        </ng-container>
+    
+        <ng-container matColumnDef="title">
+          <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Exame </th>
+          <td class="col-center" mat-cell *matCellDef="let ev">
+            {{ev.title}} {{ev.id}} {{ev.partner}} {{ev.addtitle2}}
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="insurance">
+          <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Convênio </th>
+          <td class="col-center" mat-cell *matCellDef="let row" [class.hidden]="true"> {{row.insurance}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="persona">
+          <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+          <td class="col-center" mat-cell *matCellDef="let row" [style.color]="row.persona">
+            <span *ngFor='let per of personas'>
+              <span *ngIf='per.id === row.persona'>
+                <a routerLink="/persona-form-detail/{{per.id}}">{{per.name}} /{{per.mobile}} /{{per.telephone}}</a>
+              </span>
+            </span>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="kollege">
+          <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Médico </th>
+          <td class="col-center" mat-cell *matCellDef="let row" [style.color]="row.kollege">
+            <span *ngFor='let kol of kollegen'>
+              <span *ngIf='kol.id === row.kollege'>
+                {{kol.name}}
+              </span>
+            </span>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="partner">
+          <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Parceiro </th>
+          <td class="col-center" mat-cell *matCellDef="let row" [style.color]="row.partner">
+            <span *ngFor='let partner of partners'>
+              <span *ngIf='partner.id === row.partner'>
+                {{partner.name}}
+              </span>
+            </span>
+          </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="laudo">
+          <th class="col-center" style="background-color:rgb(252, 235, 252)" mat-header-cell *matHeaderCellDef> Laudo </th>
+          <span *ngFor="let ev of eventss; let i = index">
+          <td class="col-center" style="background-color:rgb(252, 235, 252)" mat-cell *matCellDef="let ev"> 
+            <a id="evID" style="color:rgb(4, 156, 57); cursor: pointer" *ngIf="i == 0" routerLink="/report-form/{{ev.id}}">Laudo {{ev.id}}</a>
+          </td>
+          </span>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            
+        </tr>
+
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+    </div> -->
+
+
+<!-- <div style="padding-top: 60px;">
+<input (keyup)="applyFilter($event)" placeholder="Ex. Bia" #input>
+<table id="reportlistTab" mat-table [dataSource]="dataSource"> -->
+
+  <h2 class="topLimit"></h2>
+  <h4 style="text-align: center;">Tabela de Relatórios</h4>
+  <div>
+    <span>
+      <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="nao funciona para nomes" #input>
+      </mat-form-field>
+    </span>
+    <span>
+      <!-- <a routerLink="/event-form-modal">
+        <span>{{new_event}}</span>
+      </a>&nbsp; -->
+      <!-- <button (click)="newEvent()" mat-flat-button color="primary">Nova Persona</button> -->
+    </span>
+    
+  </div>
+  
+<div class="filter-tab">
+
+<div class="table-responsive cnstr-record product-tbl">
+<table style="background-color: #b1b1b1;" mat-table [dataSource]="dataSource" matSort> 
+  <ng-container matColumnDef="start">
+    <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+    <td class="col-center" style="cursor: pointer"
+        (click)="eventClicked(row)"
+        mat-cell *matCellDef="let row">
+        <span *ngFor="let ev of eventss">
+          <span *ngIf="row.event == ev.id">
+        <a routerLink="/report/{{row.id}}">{{ev.start | date: 'Y-MM-dd hh:mm'}}</a>
+          </span>
+        </span>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="persona">
+    <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </th>
+    <td class="col-center" style="cursor: pointer"
+        (click)="eventClicked(row)"
+        mat-cell *matCellDef="let row">
+        <span *ngFor="let ev of eventss">
+          <span *ngIf="row.event == ev.id">
+            <span *ngFor="let per of personas">
+              <span *ngIf="per.id == ev.persona">
+                <a routerLink="/persona-form-detail/{{row.id}}">{{per.name}} ({{per.mobile}})</a>
+              </span>
+            </span>
+          </span>
+        </span>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Procedimento </th>
+    <td class="col-center" style="cursor: pointer"
+        (click)="eventClicked(row)"
+        mat-cell *matCellDef="let row">
+        <span *ngFor="let ev of eventss">
+          <span *ngIf="row.event == ev.id">
+        <a routerLink="/persona-form-detail/{{row.id}}">{{ev.title}}</a>
+          </span>
+        </span>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="kollege">
+    <th class="col-center" mat-header-cell *matHeaderCellDef mat-sort-header> Médico </th>
+    <td class="col-center" style="cursor: pointer"
+        (click)="eventClicked(row)"
+        mat-cell *matCellDef="let row">
+        <span *ngFor="let ev of eventss">
+          <span *ngIf="row.event == ev.id">
+            <span *ngFor="let kol of kollegen">
+              <span *ngIf="kol.id == ev.kollege">
+                <a routerLink="/persona-form-detail/{{row.id}}">{{kol.name}}</a>
+              </span>
+            </span>
+          </span>
+        </span>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Row shown when there is no matching data. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+
+  <!-- <tr>
+    <th style="width: 20%;">Data</th>
+    <th style="width: 50%;">Cliente</th>
+    <th style="width: 30%;">Procedimento</th>
+  </tr>
+  <tr class="header" *ngFor="let ev of eventss; let i = index">
+    <td>
+      <a routerLink="/event-form-detail/{{ev.id}}">{{ev.start | date: 'd/M/yy, h:mm a'}}</a>
+    </td>
+    <td>
+      <span *ngFor="let per of personas">
+      <span *ngIf="ev.persona == per.id">
+        <a routerLink="/event-form-detail/{{ev.id}}">{{per.name}}</a>
+      </span>
+      </span>
+    </td>
+    <td>
+      <a routerLink="/event-form-detail/{{ev.id}}">{{ev.title}}</a>
+    </td>
+  </tr> -->
+</table>
+<mat-paginator style="display: grid;background-color: #c0c0c0;" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</div>

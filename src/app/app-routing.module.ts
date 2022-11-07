@@ -27,6 +27,8 @@ import { ThemesComponent } from './home/themes/themes.component';
 import { TeamComponent } from './home/team/team.component';
 import { ProductsComponent } from './home/products/products.component';
 import { InsuranceComponent } from './home/insurance/insurance.component';
+import { AppointmentComponent } from './home/appointment/appointment.component';
+import { ReportlistComponent } from './report/reportlist/reportlist.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +38,7 @@ const routes: Routes = [
   { path: 'insurance', component: InsuranceComponent },
   { path: 'modalEx', component: ModalExComponent },
   { path: 'themes', component: ThemesComponent },
+  { path: 'appointment', component: AppointmentComponent},
   { path: 'auth', component: AuthComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard, ReceptionGuard] },
   { path: 'traceboard', component: TraceboardComponent, canActivate: [AuthGuard, ReceptionGuard] },
@@ -49,7 +52,9 @@ const routes: Routes = [
   { path: 'kollege', component: KollegeComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'kollege-form-modal', component: KollegeFormModalComponent, canActivate: [AuthGuard, ReceptionGuard] },
   //{ path: 'deleted-dialog', component: DeletedDialog },
+  { path: 'reportlist', component: ReportlistComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'report', component: ReportComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'report/:id', component: ReportComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'capture', component: CaptureComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'report-form/:id', component: ReportFormComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'assistant', component: AssistantComponent, canActivate: [AuthGuard, AssistantGuard] },

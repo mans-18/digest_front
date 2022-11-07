@@ -205,7 +205,7 @@ export class EventComponent implements OnInit {
     //Dates filtered: less than 12h from now and more than 7days from now
     const today = Date.now();
     this.apiService.getEvents()
-    .subscribe(events => {this.eventss = events.filter(ev => ev.color !== '#FFFFFF' && (new Date(ev.start).getTime() > today-43200000 && new Date(ev.start).getTime() < today + 604800000)),
+    .subscribe(events => {this.eventss = events.filter(ev => ev.color !== '#FFFFFF' && (new Date(ev.start).getTime() > today-684000000 && new Date(ev.start).getTime() < today + 604800000)),
                           this.utilsService.dataSource = new MatTableDataSource(this.eventss),
                           //console.log('ddd',this.utilsService.dataSource.data, this.utilsService.dataSource.filteredData, this.utilsService.dataSource)
                           //this.displayedColumns.push('restore');

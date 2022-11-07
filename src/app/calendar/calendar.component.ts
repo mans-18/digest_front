@@ -190,20 +190,20 @@ export class CalendarComponent implements OnInit {
     resources: [
       {
         id: 'a',
-        title: 'Sala A',
+        title: 'Sala Rosa',
         eventColor: '#f88bc1',
         constraint: {
           resourceIds: [ 'a', 'b' ] // constrain dragging to these
         },
         businessHours: {
           startTime: '07:00',
-          endTime: '13:00'
+          endTime: '16:00'
         }
       },
       {
         id: 'b',
-        title: 'Sala B',
-        eventColor: '#008000',
+        title: 'Sala Verde',
+        eventColor: '#3BB143', //'#00FF00', //'#33f399',
         constraint: {
           resourceIds: [ 'a', 'b' ] // constrain dragging to these
         },
@@ -215,15 +215,28 @@ export class CalendarComponent implements OnInit {
       },
       {
         id: 'c',
-        title: 'Consultório 1',
+        title: 'Sala Azul',
         eventColor: '#0fa1fc',
+        constraint: {
+          resourceIds: [ 'a', 'b' ] // constrain dragging to these
+        },
+        businessHours: {
+          startTime: '07:00',
+          endTime: '13:00',
+          //daysOfWeek: [ 1, 2, 3, 4, 5, 6 ] // Mon,Wed,Fri
+        }
+      },
+      {
+        id: 'd',
+        title: 'Consultório 1',
+        eventColor: '#c2c205',
         businessHours: {
           startTime: '07:00',
           endTime: '19:00'
         }
       },
       {
-        id: 'd',
+        id: 'e',
         title: 'Consultório 2',
         eventColor: '#808000',
         businessHours: {
@@ -232,22 +245,31 @@ export class CalendarComponent implements OnInit {
         }
       },
       {
-        id: 'e',
-        title: 'Sala E',
+        id: 'f',
+        title: 'Consultório 3',
+        eventColor: '#708238',
+        businessHours: {
+          startTime: '07:00',
+          endTime: '19:00'
+        }
+      },
+      {
+        id: 'g',
+        title: 'Espaço E',
         eventColor: '#f5b041',
         businessHours: {
-          startTime: '13:00',
-          endTime: '20:00'
+          startTime: '07:00',
+          endTime: '18:00'
         }
       },
       {
         id: 'x',
         title: 'Sem Sala',
         eventColor: '#566573',
-        /*businessHours: {
+        businessHours: {
           startTime: '07:00',
-          endTime: '19:00'
-        }*/
+          endTime: '21:00'
+        }
       },
     ],
     slotMinTime: "07:00:00",

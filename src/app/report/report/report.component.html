@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <br>
 <div *ngFor="let ev of events">
 <div *ngIf="eventReports.length > 0">
@@ -10,6 +10,63 @@
 <div>
   <img id="photo">
   <button id="getAttr" (click)="setAttr()">Get Im</button>
-</div>
+</div> -->
   
 <!-- <img *ngFor="let item of eventReports" src="item.img1"> -->
+
+<span *ngIf="eventReport !== null">
+  <span *ngIf="events !== null">
+    <span *ngFor="let event of events">
+      <span *ngIf="event.id == eventReport.event">
+        <span *ngFor="let per of personas">
+          <span *ngIf="per.id == event.persona">
+            <span *ngFor="let kol of kollegen">
+              <span *ngIf="kol.id == event.kollege">
+                <!-- <span *ngFor="let partner of partners">
+                  <span *ngIf="partner.name == event.partner"> -->
+                    <!-- taking off here prevents event undefined -->
+                    <!-- <h2>{{event.title}}</h2> -->
+  
+  <table style="width: 100%" cellspacing="10">
+    <tr style="text-align:center;"><td><h2>{{event.title}}</h2></td></tr><hr>
+    <tr>
+      <!-- <span *ngIf="per.id == event.persona"> -->
+      <span *ngIf="event.id == eventReport.event">
+        <td>Nome: {{per.name}}<br>Médico: {{kol.name}}</td>
+        <td>Data: {{event.start | date: 'fullDate'}}</td>
+      </span>
+    </tr>
+    <!-- <tr>
+      <span *ngIf="event.id == eventReport.event">
+        <td></td>
+      </span>
+    </tr>
+    <tr>
+      <span>
+        <td></td>
+      </span>
+    </tr> -->
+    <hr>
+    <tr>
+      <td></td>
+    </tr>
+    <h3 style="padding-top: 0px;">Descrição</h3>
+    <tr>
+      <td>{{eventReport.phar}}<br><b>Esôfago</b>: {{eventReport.esop}}<br>
+          Estômago: {{eventReport.stom}}<br>Duodeno: {{eventReport.duod}}
+      </td>
+    </tr>
+    <hr>
+    <h3>Conclusões</h3>
+    <tr>
+      <td>
+        {{eventReport.conc1}}<br>{{eventReport.conc2}}<br>{{eventReport.conc3}}
+        {{eventReport.conc4}}<br>{{eventReport.conc5}}<br>{{eventReport.conc6}}
+      </td>
+    </tr>
+  </table>
+</span>
+</span>
+</span>
+<!-- </span>
+</span> -->

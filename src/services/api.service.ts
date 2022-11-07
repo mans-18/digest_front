@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap, retry } from 'rxjs/operators';
+import { HttpClient, HttpEvent, HttpHandler, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Persona } from '../app/models/persona';
 import { CookieService } from 'ngx-cookie-service';
 import { Kollege } from '../app/models/kollege';
-import { Event } from '../app/models/event'
+import { Event } from '../app/models/event';
 import { MessageService } from './message.service';
 import { Partner } from 'src/app/models/partner';
 import { EventReport } from 'src/app/models/eventReport';
@@ -18,21 +18,37 @@ import { EmailValidator } from '@angular/forms';
 
 export class ApiService {
 
-  baseUrl = 'http://127.0.0.1:8000/';
+  // SEE: https://github.com/CoreyMSchafer/code_snippets/tree/master/Django_Blog
+  // passw de app google for localhost: xhoncligmjhifqsz
+  //baseUrl = 'http://127.0.0.1:8000/';
+  //baseUrl = 'http://10.0.1.8:8000/'; // Wifi Ladeira
+  //baseUrl = 'http://192.168.15.144:8000/'; // WiFi Time
+  //baseUrl = 'http://177.159.28.34:311/'; // Wife Time from the internet (pub ip:port forwarded) - BAD
   // MUST include https://, otherwise the frontend will direct to a url "https://digest.com.br/digestback/heroku.com/auth"
-  //baseUrl = 'https://digestback.herokuapp.com/'
+  baseUrl = 'https://digestback.herokuapp.com/'
+  // BD endpoint: awseb-e-emihb2y4da-stack-awsebrdsdatabase-a0o71t0o5bdi.ca73ggqmwyay.us-west-2.rds.amazonaws.com
+  //baseUrl = 'https://digproj-dev.us-west-2.elasticbeanstalk.com/';
   baseDigestUrl = `${this.baseUrl}api/persona/events/`; // TO BE DELETED
   baseEventUrl = `${this.baseUrl}api/persona/events`;
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
-  })
-  
+//    'Access-Control-Allow-Origin': '*',
+  //  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+    //'Access-Control-Allow-Methods': 'GET, POST, PUT, PACTH, DELETE',
+  });
+
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({  'Content-Type': 'application/json',
+                          //      'Access-Control-Allow-Origin': '*',
+                            //    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+                              //  'Access-Control-Allow-Methods': 'GET, POST, PUT, PACTH, DELETE',
+                              })
   };
 
+  loggedUser: string;
+
   /** Log a HeroService message with the MessageService */
-  private log(message: string) {
+  private log(message: string): void {
     this.messageService.add(`ApiService: ${message}`);
   }
 
@@ -43,15 +59,15 @@ export class ApiService {
   ) { }
 
   // ######## API SERVICES ###########
-
+  // Lint: Type Observable<Object>
   createEvent(title: string, partner: string, start: Date, color: string, status: string, insurance: string, resourceId: string,
               addtitle1: string, addtitle2: string, addtitle3: string, comment: string, persona: number,
-              kollege: number) {
+              kollege: number): Observable<object> {
 
     const body = JSON.stringify({title, partner, start, color, status, insurance, resourceId, addtitle1, addtitle2,
-                                 addtitle3, comment, persona, kollege})
+                                 addtitle3, comment, persona, kollege});
 
-    return this.httpClient.post(`${this.baseEventUrl}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.post(`${this.baseEventUrl}/`, body, {headers: this.getAuthHeaders()});
     }
 
   getEvents(): Observable<Event[]> {
@@ -65,7 +81,7 @@ export class ApiService {
       );
   }
 
-  /** GET hero by id. Return `undefined` when id not found */
+  /** GET event by id. Return `undefined` when id not found */
   getEventNo404<Data>(id: number): Observable<Event> {
     const url = `${this.baseEventUrl}/?id=${id}`;
     return this.httpClient.get<Event[]>(url)
@@ -79,7 +95,7 @@ export class ApiService {
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** GET event by id. Will 404 if id not found */
   getEvent(id: number): Observable<Event> {
     const url = `${this.baseEventUrl}/${id}/`;
     return this.httpClient.get<Event>(url).pipe(
@@ -107,54 +123,56 @@ export class ApiService {
       catchError(this.handleError<Event>('deleteEvent'))
     );
   }
-
+  // Lint: Type Observable<Object>
   updateEvent(id: number, title: string, partner: string, start: Date, color: string, status: string, insurance: string, resourceId: string,
               addtitle1: string, addtitle2: string, addtitle3: string, comment: string, persona: number,
-              kollege: number) {
+              kollege: number): Observable<object> {
 
     const body = JSON.stringify({title, partner, start, color, status, insurance, resourceId, addtitle1, addtitle2,
-                                  addtitle3, comment, persona, kollege})
+                                  addtitle3, comment, persona, kollege});
     console.log('body api_serv:', body);
     console.log(typeof(start), typeof(Date), typeof(new Date()));
-    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()});
   }
 
-  putEvent(id: number, title: string, start: Date, resourceId: string, persona: number, kollege: number) {
-    const body = JSON.stringify({title, start, resourceId, persona, kollege})
+  putEvent(id: number, title: string, start: Date, resourceId: string, persona: number, kollege: number): Observable<object> {
+    const body = JSON.stringify({title, start, resourceId, persona, kollege});
     console.log('body api_serv:', body);
-    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()});
   }
 
-  putEvent_(id: number, title: string, start: Date, persona: number, kollege: number) {
-    const body = JSON.stringify({title, start, persona, kollege})
+  putEvent_(id: number, title: string, start: Date, persona: number, kollege: number): Observable<object> {
+    const body = JSON.stringify({title, start, persona, kollege});
     // console.log('body api_serv___:', body);
-    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()});
   }
 
-  putEventByAssistant(id: number, title: string, persona: number, kollege: number, status: string) {
-    const body = JSON.stringify({title, persona, kollege, status})
+  putEventByAssistant(id: number, title: string, persona: number, kollege: number, status: string): Observable<object> {
+    const body = JSON.stringify({title, persona, kollege, status});
     // console.log('body api_serv___:', body);
-    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()});
   }
 
-  putEventDel(id: number, title: string, start: Date, color: string, status: string, persona: number, kollege: number) {
-    const body = JSON.stringify({id, title, start, color, status, persona, kollege})
+  putEventDel(id: number, title: string, start: Date, color: string, status: string, persona: number, kollege: number): Observable<object> {
+    const body = JSON.stringify({id, title, start, color, status, persona, kollege});
     // console.log('body api_serv:', body);
-    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()});
   }
 
-  putEventConf(id: number, title: string, partner: string, start: Date, color: string, status: string, addtitle2: string, persona: number, kollege: number, genericChar1: string, genericNumber1: number) {
-    const body = JSON.stringify({id, title, partner, start, color, status, addtitle2, persona, kollege, genericChar1, genericNumber1})
+  putEventConf(id: number, title: string, partner: string,
+               start: Date, color: string, status: string, addtitle2: string,
+               persona: number, kollege: number, genericChar1: string, genericNumber1: number): Observable<object> {
+    const body = JSON.stringify({id, title, partner, start, color, status, addtitle2, persona, kollege, genericChar1, genericNumber1});
     // console.log('body api_serv:', body);
-    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseEventUrl}/${id}/`, body, {headers: this.getAuthHeaders()});
   }
 
   createPersona(name: string, mobile: number, whatsapp: number, telephone: number,
-    email: string, street: string, complement: string, postalcode: string,
-    dob: Date, registerdate: Date, comment: string) {
+                email: string, street: string, complement: string, postalcode: string,
+                dob: Date, registerdate: Date, comment: string): Observable<object> {
     const body = JSON.stringify({name, mobile, whatsapp, telephone, email, street,
                       complement, postalcode, dob, registerdate, comment});
-    return this.httpClient.post(`${this.baseUrl}api/persona/personas/`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.post(`${this.baseUrl}api/persona/personas/`, body, {headers: this.getAuthHeaders()});
   }
 
   getPersonas(): Observable<Persona[]> {
@@ -179,10 +197,10 @@ export class ApiService {
   updatePersona(id: number, name: string, mobile: number,
                 whatsapp: number, telephone: number, email: string,
                 street: string, complement: string, postalcode: string,
-                dob: Date, registerdate: Date, comment: string) {
+                dob: Date, registerdate: Date, comment: string): Observable<object> {
     const body = JSON.stringify({ name, mobile, whatsapp, telephone, email, street,
-                                  complement, postalcode, dob, registerdate, comment})
-    return this.httpClient.put(`${this.baseUrl}api/persona/personas/${id}/`, body, { headers: this.headers })
+                                  complement, postalcode, dob, registerdate, comment});
+    return this.httpClient.put(`${this.baseUrl}api/persona/personas/${id}/`, body, { headers: this.headers });
   }
 
   deletePersona(persona: Persona | number): Observable<Persona> {
@@ -195,21 +213,21 @@ export class ApiService {
     );
   }
 
-  createKollege(name: string, crm: string, email: string) {
+  createKollege(name: string, crm: string, email: string): Observable<object> {
     const body = JSON.stringify({name, crm, email});
     return this.httpClient.post(`${this.baseUrl}api/persona/kollegen/`,
                                 body, {headers: this.getAuthHeaders()}).pipe(
                                   catchError(this.handleError<Kollege>('Bad request'))
-                                )
+                                );
   }
 
-  /// To send email 31-8-20
-  updateKollege(id: number, name: string, crm: string, email: string) {
+  // To send email 31-8-20
+  updateKollege(id: number, name: string, crm: string, email: string): Observable<object> {
     const body = JSON.stringify({name, crm, email});
-    return this.httpClient.put(`${this.baseUrl}api/persona/kollegen/${id}`, body, {headers: this.getAuthHeaders()})
+    return this.httpClient.put(`${this.baseUrl}api/persona/kollegen/${id}`, body, {headers: this.getAuthHeaders()});
   }
 
-  getKollegen() {
+  getKollegen(): Observable<Kollege[]> {
     return this.httpClient.get<Kollege[]>(`${this.baseUrl}api/persona/kollegen/`, {headers: this.getAuthHeaders()});
   }
 
@@ -223,35 +241,59 @@ export class ApiService {
     );
   }
 
-  createPartner(name: string, crm: string, email: string, mobile: number, whatsapp: number, telephone: number) {
+  createPartner(name: string, crm: string, email: string, mobile: number, whatsapp: number, telephone: number): Observable<object> {
     const body = JSON.stringify({name, crm, email, mobile, whatsapp, telephone});
     // console.log(body);
     // console.log(this.headers);
     return this.httpClient.post(`${this.baseUrl}api/persona/partners/`,
                                 body, {headers: this.getAuthHeaders()}).pipe(
                                   catchError(this.handleError<Partner>('Bad request'))
-                                )
+                                );
   }
-  
-  getPartners() {
+
+  getPartners(): Observable<Partner[]> {
     return this.httpClient.get<Partner[]>(`${this.baseUrl}api/persona/partners/`, {headers: this.getAuthHeaders()});
   }
 
   // ######## API: EMAIL SERVICES ###########
+  private handleEmailError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      alert('Por gentileza, cheque a internet ou use o WhatsApp/Telefone.');
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      alert('Algo deu errado no servidor! Por gentileza, tente mais tarde ou use o WhatsApp/Telefone.');
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Algo deu errado! Por gentileza, tente mais tarde ou use o WhatsApp/Telefone.'));
+  }
+
   emailKollege(name: string) {
     // return this.httpClient.get(`${this.baseUrl}api/persona/email/`, {headers: this.getAuthHeaders()}).subscribe();
     const body = name //JSON.stringify({name});
-    alert("email enviado!");
-    return this.httpClient.post(`${this.baseUrl}api/persona/email/`, body, {headers: this.getAuthHeaders()});
+    return this.httpClient.post(`${this.baseUrl}api/persona/email/`, body, {headers: this.getAuthHeaders()}).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleEmailError), // then handle the error
+      tap(_ => alert("Olá! Seu email foi enviado!")),
+    );
   }
 
   emailFromSite(name: string, mobile: string, email: EmailValidator, body: string) {
     // return this.httpClient.get(`${this.baseUrl}api/persona/email/`, {headers: this.getAuthHeaders()}).subscribe();
     const bodie = {'name':name, 'mobile': mobile, 'email': email, 'body':body}; //JSON.stringify({name});
     //console.log('body', bodie);
-    alert("Obrigado pelo contato! Entraremos em contato pelo telefone ou email informado.");
-    return this.httpClient.post(`${this.baseUrl}api/persona/emailserv/`, bodie, {headers: this.getAuthHeaders()});
+    var err: HttpErrorResponse;
+    return this.httpClient.post(`${this.baseUrl}api/persona/emailserv/`, bodie, {headers: this.getAuthHeaders()}).pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleEmailError), // then handle the error
+      tap(_ => alert("Olá! Seu email foi enviado. Entraremos em contato em breve. Obrigado!")),
+    );
   }
+
 
   // ######## API: SEARCH SERVICES ###########
   /* GET heroes whose name contains search term */
@@ -299,33 +341,46 @@ export class ApiService {
   getUsers(): Observable<User[]> {
     // this.messageService.add('ApiService: fetched events');
     // return of(events);
-    return this.httpClient.get<User[]>(this.baseUrl+`api/user/users`)
+    return this.httpClient.get<User[]>(this.baseUrl + `api/user/users`)
       .pipe(
         tap(_ => this.log('fetched users')),
         catchError(this.handleError<User[]>('getUsers', []))
       );
   }
-  loggedUser: string;
-  loginUser(authData: any) {
+
+  loginUser(authData: any): Observable<object> {
     this.loggedUser = authData.username;
     const body = JSON.stringify(authData);
-    return this.httpClient.post(`${this.baseUrl}auth/`, body, {headers: this.headers})
+    const H1 = this.headers;
+    const H2 = this.getAuthHeaders();
+    console.log('mrToken on service login:', this.cookieService.get('mr-token'));
+    console.log('headers', H1);
+    console.log('getHeaders', H2);
+    // this.getAuthHeaders() does the job on localhost
+    return this.httpClient.post(`${this.baseUrl}auth/`, body, {headers: this.headers});
   }
 
-  registerUser(authData: any) {
+  registerUser(authData: any): Observable<object> {
     const body = JSON.stringify(authData);
-    return this.httpClient.post(`${this.baseUrl}users/`, body, {headers: this.headers})
+    return this.httpClient.post(`${this.baseUrl}users/`, body, {headers: this.headers});
   }
 
-  getAuthHeaders() {
+  getAuthHeaders(): HttpHeaders {
     const token = this.cookieService.get('mr-token');
+    console.log('token at getAuthHeaders on service', token);
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Token ${token}`,
+      'Authorization': `Token ${token}`,
+  //    'Access-Control-Allow-Origin': '*',
+    //  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      //'Access-Control-Allow-Methods': 'GET, POST, PUT, PACTH, DELETE',
+      // 12-10-22. (failed)mTry to fix CORS (the wrong way). From: https://stackoverflow.com/questions/62569594/request-header-field-access-control-allow-origin-is-not-allowed-by-access-contr/62619667#62619667
+      //Origin: "https://https://www.digest.com.br/auth",
+      //"Access-Control-Allow-Origin": "*",
       // Authorization: 'Token 805da997ba4ef2e3ab206d851c388eaeb3ff1e3f'
-    })
+    });
   }
-  
+
   /** PUT: update the hero on the server */
   // updateEvent(event: Event): Observable<any> {
   //   return this.httpClient.put(this.baseEventUrl, event, this.httpOptions).pipe(
@@ -346,7 +401,7 @@ export class ApiService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      //console.error(error); // log to console instead
+      // console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
@@ -360,13 +415,13 @@ export class ApiService {
   //   return this.httpClient.delete(`${this.baseEventUrl}${id}/`, {headers: this.getAuthHeaders()})
   // }
 
-  rateEvent(nome: any, rate: number, paciente: any, user: any, digestId: number) {
+  rateEvent(nome: any, rate: number, paciente: any, user: any, digestId: number): Observable<object> {
     /*OK if the full url (http...) is passed. Template literal uses backticks
-    not single/double quotes. ${expression} syntax embed an expression in the 
+    not single/double quotes. ${expression} syntax embed an expression in the
     literal. Post is not allowed by the API on /pacientes/id/*/
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
     // console.log(digestId);
-    const body = JSON.stringify({nome: nome, staff: rate, paciente: paciente, user: user});
+    const body = JSON.stringify({'nome': nome, 'staff': rate, 'paciente': paciente, 'user': user});
     return this.httpClient.put(`${this.baseEventUrl}${digestId}/`,
           body,
           {headers: this.getAuthHeaders()});
@@ -374,22 +429,23 @@ export class ApiService {
 
   // TO IMPLEMENT THE URL SEARCHING THE API: TABLE ON MOVIE-LIST
   // ORIGINAL:
-  //  eventInfo(productId) {  
-    //          this.url = 'http://localhost:49661/api/Company/getProductCountryInformation?productId='+productId;  
-    //          return this.http.get<any[]>(this.url);  
-    //      }  
+  // eventInfo(productId) {
+    //          this.url = 'http://localhost:49661/api/Company/getProductCountryInformation?productId='+productId;
+    //          return this.http.get<any[]>(this.url);
+    //      }
   eventInfo(event: Event | number): Observable<Event> {
-      const id = typeof event === 'number' ? event : event.id;
-      const url = `${this.baseEventUrl}/${id}`;
-      // this.eventUrl = 'this.baseEventUrl/?id='+productId;
-    return this.httpClient.get<Event>(url, {headers: this.getAuthHeaders()});  
+    const id = typeof event === 'number' ? event : event.id;
+    const url = `${this.baseEventUrl}/${id}`;
+    // this.eventUrl = 'this.baseEventUrl/?id='+productId;
+    return this.httpClient.get<Event>(url, {headers: this.getAuthHeaders()});
   }
 
 // ######## REPORT SERVICES ###########
 
-createEventReport(//id: number,
+createEventReport(// id: number,
   // reportUUID: string,
-   im1: String, im2: ImageBitmap, im3: ImageBitmap, im4: ImageBitmap, im5: ImageBitmap,
+   // im1: String,
+   im1: ImageBitmap, im2: ImageBitmap, im3: ImageBitmap, im4: ImageBitmap, im5: ImageBitmap,
    im6: ImageBitmap, im7: ImageBitmap, im8: ImageBitmap, im9: ImageBitmap, im10: ImageBitmap,
    drugs: string, anest: string, assistant: string, equipment: string,
    phar: string, esop: string, stom: string, duod: string, urease: string, biopsy: string, hystoResults: string,
@@ -397,8 +453,8 @@ createEventReport(//id: number,
    colo: string,
    conc1: string, conc2: string, conc3: string, conc4: string, conc5: string, conc6: string,
    complications: string,
-   event: number) {
-const body = JSON.stringify({ //reportUUID,
+   event: number): Observable<object> {
+const body = JSON.stringify({ // reportUUID,
 im1, im2, im3, im4, im5, im6, im7, im8, im9, im10,
 drugs, anest, assistant, equipment,
 phar, esop, stom, duod,
@@ -410,37 +466,37 @@ console.log('into create service', body);
 return this.httpClient.post(`${this.baseUrl}api/persona/eventreports/`,
                      body, {headers: this.getAuthHeaders()}).pipe(
                        catchError(this.handleError<EventReport>('Bad request'))
-                     )
+                     );
 }
 
 updateEventReport(id: number,
-event: number,
-// reportUUID: string,
-im1: String, im2: ImageBitmap, im3: ImageBitmap, im4: ImageBitmap, im5: ImageBitmap,
-im6: ImageBitmap, im7: ImageBitmap, im8: ImageBitmap, im9: ImageBitmap, im10: ImageBitmap,
-drugs: string, anest: string, assistant: string, equipment: string,
-phar: string, esop: string, stom: string, duod: string, urease: string, biopsy: string, hystoResults: string,
-prep: string, quality: string,
-colo: string,
-conc1: string, conc2: string, conc3: string, conc4: string, conc5: string, conc6: string,
-complications: string) {
-const body = JSON.stringify({ id, event, //reportUUID,
-im1, im2, im3, im4, im5, im6, im7, im8, im9, im10,
-drugs, anest, assistant, equipment,
-phar, esop, stom, duod,
-urease, biopsy, hystoResults,
-prep, quality,
-colo, conc1, conc2, conc3, conc4, conc5, conc6, complications});
+                  event: number,
+                  // reportUUID: string,
+                  im1: string, im2: ImageBitmap, im3: ImageBitmap, im4: ImageBitmap, im5: ImageBitmap,
+                  im6: ImageBitmap, im7: ImageBitmap, im8: ImageBitmap, im9: ImageBitmap, im10: ImageBitmap,
+                  drugs: string, anest: string, assistant: string, equipment: string,
+                  phar: string, esop: string, stom: string, duod: string, urease: string, biopsy: string, hystoResults: string,
+                  prep: string, quality: string,
+                  colo: string,
+                  conc1: string, conc2: string, conc3: string, conc4: string, conc5: string, conc6: string,
+                  complications: string): Observable<object> {
+const body = JSON.stringify({ id, event, // reportUUID,
+                              im1, im2, im3, im4, im5, im6, im7, im8, im9, im10,
+                              drugs, anest, assistant, equipment,
+                              phar, esop, stom, duod,
+                              urease, biopsy, hystoResults,
+                              prep, quality,
+                              colo, conc1, conc2, conc3, conc4, conc5, conc6, complications});
 console.log('into create service', body);
 // console.log(this.headers);
 return this.httpClient.put(`${this.baseUrl}api/persona/eventreports/${id}`,
            body, {headers: this.getAuthHeaders()}).pipe(
              catchError(this.handleError<Partner>('Bad request'))
-           )
+           );
 }
 
-getEventReports() {
-return this.httpClient.get<EventReport[]>(`${this.baseUrl}api/persona/eventreports/`, {headers: this.getAuthHeaders()});
+getEventReports(): Observable<EventReport[]> {
+  return this.httpClient.get<EventReport[]>(`${this.baseUrl}api/persona/eventreports/`, {headers: this.getAuthHeaders()});
 }
 
 /*  getEventReport(id: number) {
@@ -448,31 +504,30 @@ return this.httpClient.get<EventReport[]>(`${this.baseUrl}api/persona/eventrepor
 } */
 
 getEventReport(id: number): Observable<EventReport> {
-// this.messageService.add('ApiService: fetched events');
-// return of(events);
-const url = `${this.baseUrl}api/persona/eventreports/${id}/`
-return this.httpClient.get<EventReport>(url)
-.pipe(
-tap(_ => this.log('fetched reports')),
-catchError(this.handleError<EventReport>(`getReport id=${id}`))
-);
+  // this.messageService.add('ApiService: fetched events');
+  // return of(events);
+  const url = `${this.baseUrl}api/persona/eventreports/${id}/`;
+  return this.httpClient.get<EventReport>(url)
+  .pipe(
+  tap(_ => this.log('fetched reports')),
+  catchError(this.handleError<EventReport>(`getReport id=${id}`))
+  );
 }
 
 // ######## CAPTURE SERVICES ###########
-read_camera_capture(id: number, index_camera: number) {
-  //index_camera = 0;
-  //const body = JSON.stringify({id});
+read_camera_capture(id: number, index_camera: number): Observable<object> {
+  // index_camera = 0;
+  // const body = JSON.stringify({id});
   console.log('index_camera', index_camera, typeof(index_camera));
-  return this.httpClient.put(`${this.baseEventUrl}/${id}/`, index_camera, {headers: this.getAuthHeaders()})
+  return this.httpClient.put(`${this.baseEventUrl}/${id}/`, index_camera, {headers: this.getAuthHeaders()});
 }
 
 // ####################### https://efficientcoder.net/angular-tutorial-example-upload-files-with-formdata-httpclient-rxjs-and-material-progressbar/
-  public upload(formData) {
-
-    return this.httpClient.post<any>(`${this.baseUrl}api/persona/eventreports/`, formData, {  
-        reportProgress: true,  
-        observe: 'events'  
-      });  
+  public upload(formData): Observable<object> {
+    return this.httpClient.post<any>(`${this.baseUrl}api/persona/eventreports/`, formData, {
+        reportProgress: true,
+        observe: 'events'
+      });
   }
-  
+
 }

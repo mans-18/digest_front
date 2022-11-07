@@ -8,6 +8,7 @@ import { ThemesComponent } from './themes/themes.component';
 import { TeamComponent } from './team/team.component';
 import { ProductsComponent } from './products/products.component';
 import { InsuranceComponent } from './insurance/insurance.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 
@@ -18,7 +19,8 @@ import { InsuranceComponent } from './insurance/insurance.component';
     ThemesComponent,
     TeamComponent,
     ProductsComponent,
-    InsuranceComponent
+    InsuranceComponent,
+    AppointmentComponent
   ],
   imports: [
     CommonModule,

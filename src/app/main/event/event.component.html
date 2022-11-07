@@ -32,6 +32,9 @@
     <ng-container matColumnDef="confirm">
       <th class="col-center" style="background-color: rgb(189, 250, 189);" mat-header-cell *matHeaderCellDef mat-sort-header> Confirma? </th>
       <td class="col-center" style="background-color: rgb(189, 250, 189);" mat-cell *matCellDef="let ev">
+        <span *ngIf="ev.status == ''" (click)="confirmEvent(ev)">
+          <mat-icon class="handPointer" matSuffix>help_outline</mat-icon>
+        </span>
         <span *ngIf="ev.status == 'finalizado'">
           <fa-icon [icon]="faCheck" [ngClass]="{'blue':5>4}"></fa-icon>
         </span>
